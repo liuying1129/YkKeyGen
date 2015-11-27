@@ -37,11 +37,11 @@
                             "count": 1
                         },
                         {
-                            "xml": "<feature name=\"AppVersion\"><param name=\"android-package\" value=\"uk.co.whiteoctober.cordova.AppVersion\" /></feature>",
+                            "xml": "<feature name=\"BarcodeScanner\"><param name=\"android-package\" value=\"com.phonegap.plugins.barcodescanner.BarcodeScanner\" /></feature>",
                             "count": 1
                         },
                         {
-                            "xml": "<feature name=\"BarcodeScanner\"><param name=\"android-package\" value=\"com.phonegap.plugins.barcodescanner.BarcodeScanner\" /></feature>",
+                            "xml": "<feature name=\"AppVersion\"><param name=\"android-package\" value=\"uk.co.whiteoctober.cordova.AppVersion\" /></feature>",
                             "count": 1
                         }
                     ]
@@ -598,10 +598,10 @@
         "io.litehelpers.cordova.sqlite": {
             "PACKAGE_NAME": "com.yklis.keygen"
         },
-        "uk.co.whiteoctober.cordova.appversion": {
+        "phonegap-plugin-barcodescanner": {
             "PACKAGE_NAME": "com.yklis.keygen"
         },
-        "phonegap-plugin-barcodescanner": {
+        "uk.co.whiteoctober.cordova.appversion": {
             "PACKAGE_NAME": "com.yklis.keygen"
         }
     },
