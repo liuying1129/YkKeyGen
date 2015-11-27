@@ -1,0 +1,16 @@
+<ion-view view-title="短信列表">
+
+  <ion-content>
+    <ion-list>
+      <!--  ng-click="goSmsDetail()" -->
+      <ion-item class="item-icon-right" collection-repeat="sms in smsList" href="#/tab/dash/{{sms.address}}/{{sms.body}}">
+        <font style='color:red;font-weight:bold;'>{{sms.address}}</font><br />
+        {{sms.body}}
+        <i class="icon ion-ios-arrow-right"></i>
+      </ion-item>
+
+    </ion-list>
+
+
+  </ion-content>
+</ion-view>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    id="com.yklis.keygen"
+    version="0.0.1">
+    <!-- id:安装插件后，项目plugins目录下生成的插件目录名。与其他地方的写法无必然关系 -->
+    <!-- rm插件时用该id:cordova plugin rm com.yklis.keygen-->
+
+  <name>KeyGen Plugin</name>
+  <description></description>
+
+  <engines>
+    <engine name="cordova" version=">=2.0.0" />
+  </engines>
+
+  <js-module src="www/commfuction.js" name="Abcdefg"><!-- name随意 -->
+    <merges target="yklis.commfuction" /><!-- 调用方法时的头部,随意定，调用时与此相同即可 -->
+  </js-module>
+
+  <!-- android -->
+  <platform name="android">
+  
+    <config-file target="res/xml/config.xml" parent="/*">
+      <feature name="YkLisDES"><!-- 必须与js的第三个参数一致 -->
+        <param name="android-package" value="com.yklis.keygen.CommFunction"/><!-- value:JAVA类的包名.类名 -->
+      </feature>
+    </config-file>
+
+    <source-file src="src/android/CommFunction.java" target-dir="src/com/yklis/keygen" /><!-- target-dir随意 -->
+
+  </platform>
+
+</plugin>

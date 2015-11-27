@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    id="com.yklis.sms"
+    version="0.0.1">
+    <!-- id:安装插件后，项目plugins目录下生成的插件目录名。与其他地方的写法无必然关系 -->
+    <!-- rm插件时用该id:cordova plugin rm com.yklis.sms-->
+
+  <name>Sms Plugin</name>
+  <description></description>
+
+  <engines>
+    <engine name="cordova" version=">=2.0.0" />
+  </engines>
+
+  <js-module src="www/commfuction.js" name="Abcdefg"><!-- name随意 -->
+    <merges target="yklis.commfuction" /><!-- 调用方法时的头部,随意定，调用时与此相同即可 -->
+  </js-module>
+
+  <!-- android -->
+  <platform name="android">
+  
+    <config-file target="res/xml/config.xml" parent="/*">
+      <feature name="YkLisSms"><!-- 必须与js的第三个参数一致 -->
+        <param name="android-package" value="com.yklis.sms.CommFunction"/><!-- value:JAVA类的包名.类名 -->
+      </feature>
+    </config-file>
+
+    <!-- 授权 -->
+    <config-file target="AndroidManifest.xml" parent="/*">  
+        <uses-permission android:name="android.permission.READ_SMS" />
+        <uses-permission android:name="android.permission.SEND_SMS" />
+    </config-file>   
+
+    <source-file src="src/android/CommFunction.java" target-dir="src/com/yklis/sms" /><!-- target-dir随意 -->
+
+  </platform>
+
+</plugin>

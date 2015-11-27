@@ -1,0 +1,82 @@
+{
+    "cordova-plugin-device": {
+        "source": {
+            "type": "registry",
+            "id": "cordova-plugin-device"
+        },
+        "is_top_level": true,
+        "variables": {}
+    },
+    "cordova-plugin-console": {
+        "source": {
+            "type": "registry",
+            "id": "cordova-plugin-console"
+        },
+        "is_top_level": true,
+        "variables": {}
+    },
+    "cordova-plugin-whitelist": {
+        "source": {
+            "type": "registry",
+            "id": "cordova-plugin-whitelist"
+        },
+        "is_top_level": true,
+        "variables": {}
+    },
+    "cordova-plugin-splashscreen": {
+        "source": {
+            "type": "registry",
+            "id": "cordova-plugin-splashscreen"
+        },
+        "is_top_level": true,
+        "variables": {}
+    },
+    "com.ionic.keyboard": {
+        "source": {
+            "type": "registry",
+            "id": "com.ionic.keyboard"
+        },
+        "is_top_level": true,
+        "variables": {}
+    },
+    "com.yklis.keygen": {
+        "source": {
+            "type": "local",
+            "path": "PluginPack\\Cordova_Plugin_KeyGen"
+        },
+        "is_top_level": true,
+        "variables": {}
+    },
+    "com.yklis.sms": {
+        "source": {
+            "type": "local",
+            "path": "PluginPack\\Cordova_Plugin_Sms"
+        },
+        "is_top_level": true,
+        "variables": {}
+    },
+    "io.litehelpers.cordova.sqlite": {
+        "source": {
+            "type": "local",
+            "path": "C:\\Users\\liuying\\Desktop\\Cordova-sqlite-storage"
+        },
+        "is_top_level": true,
+        "variables": {}
+    },
+    "uk.co.whiteoctober.cordova.appversion": {
+        "source": {
+            "type": "local",
+            "path": "D:\\参考源码\\YkKeyGen\\PluginPack\\cordova-plugin-app-version"
+        },
+        "is_top_level": true,
+        "variables": {}
+    },
+    "phonegap-plugin-barcodescanner": {
+        "source": {
+            "type": "local",
+            "path": "D:\\参考源码\\YkKeyGen\\PluginPack\\phonegap-plugin-barcodescanner"
+        },
+        "is_top_level": true,
+        "variables": {}
+    }
+}

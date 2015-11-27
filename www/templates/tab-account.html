@@ -1,0 +1,25 @@
+<ion-view view-title="我">
+  <ion-content>
+    <ion-list>
+      <ion-item>      	
+      	版本号:{{VersionNumber}}
+      </ion-item> 
+      <ion-item>
+      	<ly-scanbarcode></ly-scanbarcode>
+      	{{barcodeResult.text}}
+      </ion-item> 
+      <!-- <ion-item> -->
+        <label class="item item-input">
+          <i class="icon ion-ios-person-outline positive"></i>
+          <input type="text" placeholder="输入待生成二维码的内容" ng-model="qrText.srcQrText" ng-change="MakeQrCode()">
+        </label>
+        <div id="code"></div>
+      <!-- </ion-item> -->
+      <ion-item>
+        <button>测试按钮</button>
+      </ion-item>   
+        <div id="barcodeTarget"></div>
+
+    </ion-list>
+  </ion-content>
+</ion-view>

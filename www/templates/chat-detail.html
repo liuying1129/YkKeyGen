@@ -1,0 +1,41 @@
+<ion-view>
+  <ion-nav-buttons side="right">
+    <!-- 注意，HITML的函数参数没用{{}} -->   
+    <a class="button icon-left ion-android-textsms button-clear button-positive" ng-click="doSendSms(sms.Address,SendType.choice+':'+enCryptSmsBody)">发送</a>
+  </ion-nav-buttons>
+  <!-- 与view-title效果一样 -->
+  <ion-nav-title>
+    短信详情
+  </ion-nav-title>  
+  <ion-content class="padding">
+    <ion-list>
+      <div class="item">{{sms.Address}}</div>
+      <label class="item item-input">
+          <textarea maxlength="500" rows="5" autofocus="true" ng-model="sms.Body"></textarea>
+      </label>
+
+      <button class="button button-block button-balanced" ng-click="getEnCrypt()">加密</button>
+      {{enCryptSmsBody}}  
+      <!-- <div class="item item-divider"><b>请选择发送类型</b></div>
+      <label class="item item-radio">
+        <input type="radio" name="group" checked>
+        <div class="item-content">授权</div>
+        <i class="radio-icon ion-checkmark assertive"></i>
+      </label>
+      <label class="item item-radio">
+        <input type="radio" name="group">
+        <div class="item-content">注册</div>
+        <i class="radio-icon ion-checkmark assertive"></i>
+      </label>
+      <label class="item item-radio">
+        <input type="radio" name="group">
+        <div class="item-content">接口</div>
+        <i class="radio-icon ion-checkmark assertive"></i>
+      </label> -->
+      <div class="item item-divider">选择发送类型</div>
+      <ion-radio ng-repeat="type in sendTypes" ng-model="SendType.choice" ng-value="type">
+      {{type}}
+      </ion-radio>      
+    </ion-list>
+  </ion-content>
+</ion-view>

@@ -1,0 +1,15 @@
+<ion-view view-title="已发送列表" cache-view="false">
+<!-- ion-view中增加 cache-view="false"，则每次进入页面都会执行controller -->
+  <ion-content>
+    <ion-list>
+
+      <ion-item class="item-text-wrap" collection-repeat="send in sendList">
+      <font style='color:red;font-weight:bold;'>{{send.TelNo}}</font><div style="float:right;">{{send.Create_Date_Time}}</div><br />
+      {{send.OrgRegNo}}<br />
+      {{send.RegNo}}<br />
+      <ion-option-button class="button-assertive" ng-click="deleteSendItem(send)">删除</ion-option-button>
+      </ion-item>
+
+    </ion-list>
+  </ion-content>
+</ion-view>

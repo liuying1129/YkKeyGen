@@ -1,0 +1,32 @@
+{
+  "name": "%E5%AF%86%E7%A0%81%E5%99%A8",
+  "version": "1.0.0",
+  "description": "密码器: An Ionic project",
+  "dependencies": {
+    "gulp": "^3.5.6",
+    "gulp-sass": "^1.3.3",
+    "gulp-concat": "^2.2.0",
+    "gulp-minify-css": "^0.3.0",
+    "gulp-rename": "^1.2.0"
+  },
+  "devDependencies": {
+    "bower": "^1.3.3",
+    "gulp-util": "^2.2.14",
+    "shelljs": "^0.3.0"
+  },
+  "cordovaPlugins": [
+    "cordova-plugin-device",
+    "cordova-plugin-console",
+    "cordova-plugin-whitelist",
+    "cordova-plugin-splashscreen",
+    "com.ionic.keyboard",
+    "./PluginPack/Cordova_Plugin_KeyGen",
+    "./PluginPack/Cordova_Plugin_Sms",
+    "./PluginPack/Cordova-sqlite-storage",
+    "D:\\参考源码\\YkKeyGen\\PluginPack\\cordova-plugin-app-version",
+    "D:\\参考源码\\YkKeyGen\\PluginPack\\phonegap-plugin-barcodescanner"
+  ],
+  "cordovaPlatforms": [
+    "android"
+  ]
+}
