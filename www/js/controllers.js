@@ -165,7 +165,7 @@ angular.module('starter.controllers', ['ngCordova'])
   $scope.SendType = {choice:"授权"};  
 })
 
-.controller('AccountCtrl', function($scope) {
+.controller('AccountCtrl', function($scope,$http,$ionicLoading,$ionicPopup,$timeout, $q) {
 
   var getVersionNumber = function() {
 
@@ -274,5 +274,104 @@ angular.module('starter.controllers', ['ngCordova'])
   });
   //手势密码stop
 
+  $scope.rqtLogin = function(){
+
+            //ionicLoading.show({
+            //    template: '<ion-spinner icon="ios-small"></ion-spinner>Loading...'
+            //});
+
+            //var deferred = $q.defer();
+
+            //var params = {
+                //request : 'login',
+            //    userId : '051'
+            //};
+
+            //transFn = function(data) {
+            //    return $.param(data);
+            //},
+            //postCfg = {
+            //    headers: { 'Content-Type': 'application/json; charset=UTF-8'}//,
+                //transformRequest: transFn
+            //};
+
+//            $http({
+//url:'http://211.97.0.5:8080/YkAPI/service/login?userId=051',
+//method:'POST'
+//}).success(function(data, status, headers, config){
+  //data:这个数据代表转换过后的响应体（如果定义了转换的话）
+  //status:响应的HTTP状态码
+  //headers:这个函数是头信息的getter函数，可以接受一个参数，用来获取对应名字值
+  //config:这个对象是用来生成原始请求的完整设置对象
+  //这个字符串是响应的HTTP状态文本
+//响应成功
+//alert("success");
+//alert('statusText:'+data.statusText);
+//                alert('data:'+data);
+//                alert('headers:'+headers);
+//                alert('config:'+config);
+//                alert('status:'+status);
+
+//})
+//.error(function(data,header,config,status){
+//处理响应失败
+//alert("fail");
+                //alert('data:'+data);
+                //alert('header:'+header);
+                //alert('config:'+config);
+                //alert('status:'+status);
+//})
+//.error(function(data, status, headers, config){ // <--- catch instead error
+
+//        alert("fail");
+        //alert(data.statusText);
+        //alert('status:'+status);
+                //alert('data:'+data);
+//                alert('header:'+headers);
+                //alert('config:'+config);
+//                alert('status:'+status);
+
+    //});
+
+            $http({
+              url:'http://211.97.0.5:8080/YkAPI/service/login?userId=051',
+              method:'GET'
+            })            
+            //$http.get("http://211.97.0.5:8080/YkAPI/service/login?userId=051")
+            .success(function(data, status, headers, config){
+                    $ionicLoading.hide();
+                    //deferred.resolve(data);
+                    alert('data:'+data);
+                    alert('data:'+data.token);
+                }
+            )
+            //.success(function(response) {$scope.names = response.token;})
+            .error(function(data, status, headers, config){
+                $ionicLoading.hide();
+
+                //data:这个数据代表转换过后的响应体（如果定义了转换的话）
+                //status:响应的HTTP状态码
+                //headers:这个函数是头信息的getter函数，可以接受一个参数，用来获取对应名字值
+                //config:这个对象是用来生成原始请求的完整设置对象
+                alert('data:'+data);
+                alert('status:'+status);
+                alert('headers:'+headers);
+                alert('config:'+config);
+                
+                var alertPopup = $ionicPopup.alert({
+                    template: '加载数据失败'
+                });
+                alertPopup.then(function(res) {
+                    //console.log('Thank you for not eating my delicious ice cream cone');
+                });
+                $timeout(function() {
+                    alertPopup.close(); //由于某种原因3秒后关闭弹出
+                }, 2000);
+                //deferred.reject(error);//$defer, promise must be rejected on error
+            });
+
+            //return deferred.promise;
+
+  };
 
 });
