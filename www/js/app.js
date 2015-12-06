@@ -14,9 +14,9 @@ angular.module('starter', [
   , 'common.constants'
   ])
 
-.run(function($ionicPlatform,$ionicPopup,$location,$ionicHistory) {
+.run(function($ionicPlatform,$ionicPopup,$location,$ionicHistory,$rootScope, $state) {
   $ionicPlatform.ready(function() {
-    // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
+    // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard  ,$localstorage
     // for form inputs)
     if (window.cordova && window.cordova.plugins && window.cordova.plugins.Keyboard) {
       cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
@@ -65,6 +65,21 @@ angular.module('starter', [
     return false;
   }, 101);  
   //退出功能stop
+
+  //登录start
+  $rootScope.$on('$stateChangeStart',function(event, toState, toParams, fromState, fromParams){
+      if(toState.name=='login')return;// 如果是进入登录界面则允许
+      // 如果用户不存在
+      var userId = '';//$localstorage.get('userId', '');
+      if(!userId || userId == ''){
+          event.preventDefault();// 取消默认跳转行为
+          $state.go("login",{});//跳转到登录界面
+      } else {
+          //Do nothing
+      }
+  });  
+  //登录stop
+
 })
 
 .config(function($stateProvider, $urlRouterProvider,$ionicConfigProvider) {
@@ -75,8 +90,14 @@ angular.module('starter', [
   // Each state's controller can be found in controllers.js
   $stateProvider
 
+  .state('login', {
+      url: '/login',
+      templateUrl: 'templates/login.html',                     
+      controller: 'LoginController'   
+  })
+
   // setup an abstract state for the tabs directive
-    .state('tab', {
+  .state('tab', {
     url: '/tab',
     abstract: true,
     templateUrl: 'templates/tabs.html'
