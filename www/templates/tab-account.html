@@ -1,4 +1,9 @@
 <ion-view view-title="我">
+  <ion-nav-buttons side="right">
+      <button class="button button-clear icon-left ion-android-exit" ng-click="logout()">
+          安全退出
+      </button>
+  </ion-nav-buttons>
   <ion-content>
     <ion-list>
       <ion-item>      	
@@ -24,10 +29,7 @@
         <div id="gesturepwd"></div>
       </ion-item>   
       <ion-item>
-        <button ng-click="rqtLogin()">登录请求</button>
-      </ion-item>   
-      <ion-item>
-        <!-- <button ng-click="rqtNormal()">普通请求</button> -->
+        <button ng-click="rqtNormal()">普通请求</button>
       </ion-item>   
 
     </ion-list>

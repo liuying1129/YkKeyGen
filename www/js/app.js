@@ -15,6 +15,7 @@ angular.module('starter', [
   ])
 
 .run(function($ionicPlatform,$ionicPopup,$location,$ionicHistory,$rootScope, $state,$window) {
+
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard  ,$localstorage
     // for form inputs)
@@ -68,6 +69,7 @@ angular.module('starter', [
 
   //登录start
   $rootScope.$on('$stateChangeStart',function(event, toState, toParams, fromState, fromParams){
+
       if(toState.name === 'login')return;// 如果是进入登录界面则允许//$stateChangeSuccess
       // 如果用户不存在
       var userId = $window.localStorage['token'];

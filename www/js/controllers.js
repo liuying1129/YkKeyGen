@@ -205,17 +205,28 @@ angular.module('starter.controllers', ['ngCordova'])
     .success(function(data, status, headers, config){
             $ionicLoading.hide();
             //deferred.resolve(data);//声明执行成功，即http请求数据成功，可以返回数据了
-            //$localstorage.set('token', data.token);
-            //alert($localstorage.get('token', ''));
+
+            //判断变量为有效的字符串
+            //先要确定该变量存在，否则后面的判断会发生错误，还要确定该变量是string数据类型的，
+            //然而，如果该变量是一个String对象，而不是一个直接量，typeof将返回一个'object'数据类型而不是'string'，
+            //这就是为什么要使用valueOf方法，它对所有的javascript对象都可用，不管对象是什么，
+            //都返回其基本值：对于Number，String和布尔类型，返回其原始值；对于函数，是函数文本，
+            //因此，如果该变量是一个String对象，valueOf返回一个字符串直接量，如果该变量已经是一个字符串直接量，
+            //对其应用valueOf方法会临时性地将它封装成一个String对象，这意味着，valueOf仍然将返回一个字符串直接量，
+            //最终，只用测量该字符串长度是否大于0了
+            if((typeof data.msg!='undefined')&&(typeof data.msg.valueOf()=='string')&&(data.msg.length>0)){
+              alert(data.msg);
+              return;
+            }
+            
+            if ((!data.token)||("" === data.token)) {
+              alert("获取的token为空");
+              return;
+            }
+
             $window.localStorage['token'] = data.token;
-            alert($window.localStorage['token']);
-            alert('data:'+data);
-            alert('data:'+data.token);  
 
-            //$location.path('/tab/homePage');
             $state.go("tab.dash", {}, {reload:true});
-
-
     })
     .error(function(data, status, headers, config){
         $ionicLoading.hide();
@@ -223,14 +234,9 @@ angular.module('starter.controllers', ['ngCordova'])
         //data:这个数据代表转换过后的响应体（如果定义了转换的话）
         //status:响应的HTTP状态码
         //headers:这个函数是头信息的getter函数，可以接受一个参数，用来获取对应名字值
-        //config:这个对象是用来生成原始请求的完整设置对象
-        alert('data:'+data);
-        alert('status:'+status);
-        alert('headers:'+headers);
-        alert('config:'+config);
-        
+        //config:这个对象是用来生成原始请求的完整设置对象        
         var alertPopup = $ionicPopup.alert({
-            template: '加载数据失败'
+            template: '登录请求失败,状态码:'+status
         });
         alertPopup.then(function(res) {
             //console.log('Thank you for not eating my delicious ice cream cone');
@@ -249,7 +255,7 @@ angular.module('starter.controllers', ['ngCordova'])
 
 })
 
-.controller('AccountCtrl', function($scope,$http,$ionicLoading,$ionicPopup,$timeout, $q,AppConstant) {
+.controller('AccountCtrl', function($scope,$http,$ionicLoading,$ionicPopup,$timeout, $q,AppConstant,$window,$ionicHistory) {
 
   var getVersionNumber = function() {
 
@@ -358,7 +364,29 @@ angular.module('starter.controllers', ['ngCordova'])
   });
   //手势密码stop
 
-  $scope.rqtLogin = function(){
+  $scope.logout = function () {
+      $ionicPopup.confirm({
+          title: '<strong>安全退出?</strong>',
+          template: '确定要安全退出吗?',
+          okText: '退出',
+          cancelText: '取消'
+      }).then(function (res) {
+        if (res) {
+          $window.localStorage.removeItem('token');
+          $ionicHistory.clearHistory();
+          $ionicHistory.clearCache();
+          if (ionic.Platform.isIOS()) {
+              $state.go('login', {}, {reload:true});
+          } else {
+              ionic.Platform.exitApp();
+          }
+        } else {
+          // Don't close
+        }
+      });
+  };  
+
+  $scope.rqtNormal = function(){
 
             $ionicLoading.show({
                 template: '<ion-spinner icon="ios-small"></ion-spinner>Loading...'
