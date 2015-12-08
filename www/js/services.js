@@ -1,6 +1,6 @@
 angular.module('starter.services', [])
 
-.factory('Chats', function() {
+.factory('Chats', function($ionicLoading,$q,AppConstant,$window,$http,$ionicPopup) {
   // Might use a resource here that returns a JSON array
 
   // Some fake testing data
@@ -62,6 +62,48 @@ angular.module('starter.services', [])
         }
       }
       return null;
+    },
+    getNormal:function() {
+
+            $ionicLoading.show({
+                template: '<ion-spinner icon="ios-small"></ion-spinner>Loading...'
+            });
+
+            var deferred = $q.defer();
+
+            $http({
+              url:'http://211.97.0.5:8080/YkAPI/service/normal',
+              method:'POST',
+              params: {
+                token:$window.localStorage['token']
+              }
+            })            
+            .success(function(data, status, headers, config){
+                    $ionicLoading.hide();
+                    deferred.resolve(data);
+                }
+            )
+            .error(function(data, status, headers, config){
+                $ionicLoading.hide();
+
+                //data:这个数据代表转换过后的响应体（如果定义了转换的话）
+                //status:响应的HTTP状态码
+                //headers:这个函数是头信息的getter函数，可以接受一个参数，用来获取对应名字值
+                //config:这个对象是用来生成原始请求的完整设置对象
+                
+                var alertPopup = $ionicPopup.alert({
+                  template: '请求失败,状态码:'+status
+                });
+                alertPopup.then(function(res) {
+                    //console.log('Thank you for not eating my delicious ice cream cone');
+                });
+                $timeout(function() {
+                    alertPopup.close(); //由于某种原因3秒后关闭弹出
+                }, 2000);
+                deferred.reject(error);//$defer, promise must be rejected on error
+            });
+
+            return deferred.promise;                 
     }
   };
 });

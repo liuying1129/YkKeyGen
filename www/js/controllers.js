@@ -255,7 +255,7 @@ angular.module('starter.controllers', ['ngCordova'])
 
 })
 
-.controller('AccountCtrl', function($scope,$http,$ionicLoading,$ionicPopup,$timeout, $q,AppConstant,$window,$ionicHistory) {
+.controller('AccountCtrl', function($scope,$http,$ionicLoading,$ionicPopup,$timeout, $q,AppConstant,$window,$ionicHistory,Chats,$state) {
 
   var getVersionNumber = function() {
 
@@ -388,7 +388,30 @@ angular.module('starter.controllers', ['ngCordova'])
 
   $scope.rqtNormal = function(){
 
-            $ionicLoading.show({
+    var promise=Chats.getNormal();
+    promise.then(function(data) {
+        //post成功才会执行
+
+    if((typeof data.msg!='undefined')&&(typeof data.msg.valueOf()=='string')&&(data.msg.length>0)){
+      alert(data.msg);
+      $state.go('login', {}, {reload:true});
+      return;
+    }
+
+        alert(data.key1);
+        alert(data.key2);
+        alert(data.key3);
+        //$scope.alarmIndexInfo = data;
+        
+        //var alarmIndexDetail = "";
+        //for(var key in data.detail){ 
+        //        alarmIndexDetail = alarmIndexDetail + "  " + "级别:" + key + ",数量:" + data.detail[key];  
+        //}        
+        //$scope.alarmIndexDetail = alarmIndexDetail;
+                
+    });
+
+            /*$ionicLoading.show({
                 template: '<ion-spinner icon="ios-small"></ion-spinner>Loading...'
             });
 
@@ -447,7 +470,7 @@ angular.module('starter.controllers', ['ngCordova'])
                 //deferred.reject(error);//$defer, promise must be rejected on error
             });
 
-            //return deferred.promise;
+            //return deferred.promise;*/
 
   };
 
