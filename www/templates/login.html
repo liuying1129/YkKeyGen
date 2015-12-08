@@ -7,13 +7,13 @@
             </div>
             <label class="item item-input">
                 <i class="icon ion-ios-person-outline positive"></i>
-                <input type="text" placeholder="请输入您的用户名" >
-                <!-- ng-model="login.username" -->
+                <input type="text" placeholder="请输入您的用户名" ng-model="login.userId" >
+                <!-- -->
             </label>
             <label class="item item-input">
                 <i class="icon ion-ios-unlocked-outline positive"></i>
-                <input type="password" placeholder="请输入您的密码" >
-                <!-- ng-model="login.password" -->
+                <input type="password" placeholder="请输入您的密码" ng-model="login.passWord" >
+                <!-- -->
             </label>
             <!--<label class="item item-checkbox">
                 <label class="checkbox">
@@ -23,8 +23,8 @@
             </label>-->
         </div>
         <div class="padding-left padding-right">
-            <button class="button button-block button-positive" >登录系统</button>
-            <!-- ng-click='login()' -->
+            <button class="button button-block button-positive" ng-click='login()' >登录系统</button>
+            <!-- -->
         </div>
   </ion-content>
 </ion-view>
