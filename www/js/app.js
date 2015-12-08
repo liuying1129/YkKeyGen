@@ -68,12 +68,12 @@ angular.module('starter', [
 
   //登录start
   $rootScope.$on('$stateChangeStart',function(event, toState, toParams, fromState, fromParams){
-      if(toState.name=='login')return;// 如果是进入登录界面则允许
+      if(toState.name === 'login')return;// 如果是进入登录界面则允许//$stateChangeSuccess
       // 如果用户不存在
       var userId = '';//$localstorage.get('userId', '');
       if(!userId || userId == ''){
           event.preventDefault();// 取消默认跳转行为
-          $state.go("login",{});//跳转到登录界面
+          //$state.go("login",{});//跳转到登录界面
       } else {
           //Do nothing
       }
