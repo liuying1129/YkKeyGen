@@ -12,6 +12,7 @@ angular.module('starter', [
   , 'starter.services'
   , 'common.directive'
   , 'common.constants'
+  , 'starter.commonService'
   ])
 
 .run(function($ionicPlatform,$ionicPopup,$location,$ionicHistory,$rootScope, $state,$window) {
@@ -53,6 +54,7 @@ angular.module('starter', [
 
     // Is there a page to go back to?
     if (  $location.path() == '/tab/dash'
+       || $location.path() == '/login'
        || $location.path() == '/tab/chats'
        || $location.path() == '/tab/account') {
       showConfirm();
@@ -72,7 +74,7 @@ angular.module('starter', [
 
       if(toState.name === 'login')return;// 如果是进入登录界面则允许//$stateChangeSuccess
       // 如果用户不存在
-      var userId = $window.localStorage['token'];
+      var userId = $window.localStorage['userId'];
       if(!userId || userId == ''){
           //event.preventDefault();// 取消默认跳转行为
           //$state.go("login",{});//跳转到登录界面

@@ -166,7 +166,7 @@ angular.module('starter.controllers', ['ngCordova'])
   $scope.SendType = {choice:"授权"};  
 })
 
-.controller('LoginController', function($scope,$ionicLoading,$ionicPopup,$timeout,$state,$http,AppConstant,$window) {
+.controller('LoginController', function($scope,$ionicLoading,$ionicPopup,$timeout,$state,$http,AppConstant,$window,CommonService) {
 
   $scope.login = function () {
 
@@ -179,32 +179,17 @@ angular.module('starter.controllers', ['ngCordova'])
         });
         return;
     }
-    /*if (null == $scope.login.passWord || "" == $scope.login.passWord) {
-        $ionicPopup.alert({
-            title: '提示',
-            template: "密码不能为空。",
-            okText: '确定'
-        });
-        return;
-    }*/
-    $ionicLoading.show({
-        template: '<ion-spinner icon="ios-small"></ion-spinner>Loading...'
-    });
 
-    //var deferred = $q.defer();// 声明延后执行，表示要去监控后面的执行
-
-    $http({
-      url:AppConstant.BASE_URL,
-      //GET、POST后台均支持
-      method:'POST',
-      params: {
+    params = {
         userId:$scope.login.userId,
         passWord:$scope.login.passWord
-      }
-    })            
-    .success(function(data, status, headers, config){
-            $ionicLoading.hide();
-            //deferred.resolve(data);//声明执行成功，即http请求数据成功，可以返回数据了
+    };
+
+    var promise = CommonService.asynchHttpMethod(AppConstant.BASE_URL+'login','POST',params);
+
+    promise.then(function(data) {
+
+      //post成功才会执行
 
             //判断变量为有效的字符串
             //先要确定该变量存在，否则后面的判断会发生错误，还要确定该变量是string数据类型的，
@@ -214,10 +199,9 @@ angular.module('starter.controllers', ['ngCordova'])
             //因此，如果该变量是一个String对象，valueOf返回一个字符串直接量，如果该变量已经是一个字符串直接量，
             //对其应用valueOf方法会临时性地将它封装成一个String对象，这意味着，valueOf仍然将返回一个字符串直接量，
             //最终，只用测量该字符串长度是否大于0了
-            if((typeof data.msg!='undefined')&&(typeof data.msg.valueOf()=='string')&&(data.msg.length>0)){
-              alert(data.msg);
-              return;
-            }
+      if((typeof data.msg!='undefined')&&(typeof data.msg.valueOf()=='string')&&(data.msg.length>0))return;
+        
+      //处理正常业务数据
             
             if ((!data.token)||("" === data.token)) {
               alert("获取的token为空");
@@ -225,37 +209,18 @@ angular.module('starter.controllers', ['ngCordova'])
             }
 
             $window.localStorage['token'] = data.token;
+            $window.localStorage['userId'] = $scope.login.userId;
 
-            $state.go("tab.dash", {}, {reload:true});
-    })
-    .error(function(data, status, headers, config){
-        $ionicLoading.hide();
-
-        //data:这个数据代表转换过后的响应体（如果定义了转换的话）
-        //status:响应的HTTP状态码
-        //headers:这个函数是头信息的getter函数，可以接受一个参数，用来获取对应名字值
-        //config:这个对象是用来生成原始请求的完整设置对象        
-        var alertPopup = $ionicPopup.alert({
-            template: '登录请求失败,状态码:'+status
-        });
-        alertPopup.then(function(res) {
-            //console.log('Thank you for not eating my delicious ice cream cone');
-        });
-        $timeout(function() {
-            alertPopup.close(); //由于某种原因3秒后关闭弹出
-        }, 2000);
-        //deferred.reject(error);//$defer, promise must be rejected on error
+            $state.go("tab.dash");
+                
     });
-
-    //return deferred.promise; //返回承诺，这里并不是最终数据，而是访问最终数据的API
-
 
   };
 
 
 })
 
-.controller('AccountCtrl', function($scope,$http,$ionicLoading,$ionicPopup,$timeout, $q,AppConstant,$window,$ionicHistory,Chats,$state) {
+.controller('AccountCtrl', function($scope,$http,$ionicLoading,$ionicPopup,$timeout, $q,AppConstant,$window,$ionicHistory,Chats,$state,CommonService) {
 
   var getVersionNumber = function() {
 
@@ -372,11 +337,11 @@ angular.module('starter.controllers', ['ngCordova'])
           cancelText: '取消'
       }).then(function (res) {
         if (res) {
-          $window.localStorage.removeItem('token');
+          $window.localStorage.removeItem('userId');
           $ionicHistory.clearHistory();
           $ionicHistory.clearCache();
           if (ionic.Platform.isIOS()) {
-              $state.go('login', {}, {reload:true});
+              $state.go('login');
           } else {
               ionic.Platform.exitApp();
           }
@@ -388,90 +353,25 @@ angular.module('starter.controllers', ['ngCordova'])
 
   $scope.rqtNormal = function(){
 
-    var promise=Chats.getNormal();
+    var params = {
+      token:$window.localStorage['token']
+    };
+
+    var promise = CommonService.asynchHttpMethod(AppConstant.BASE_URL+'normal','POST',params);
+
+    //var promise=Chats.getNormal();
     promise.then(function(data) {
-        //post成功才会执行
 
-    if((typeof data.msg!='undefined')&&(typeof data.msg.valueOf()=='string')&&(data.msg.length>0)){
-      alert(data.msg);
-      $state.go('login', {}, {reload:true});
-      return;
-    }
+      //post成功才会执行
 
-        alert(data.key1);
-        alert(data.key2);
-        alert(data.key3);
-        //$scope.alarmIndexInfo = data;
+      if((typeof data.msg!='undefined')&&(typeof data.msg.valueOf()=='string')&&(data.msg.length>0))return;
         
-        //var alarmIndexDetail = "";
-        //for(var key in data.detail){ 
-        //        alarmIndexDetail = alarmIndexDetail + "  " + "级别:" + key + ",数量:" + data.detail[key];  
-        //}        
-        //$scope.alarmIndexDetail = alarmIndexDetail;
+      //处理正常业务数据
+      alert(data.key1);
+      alert(data.key2);
+      alert(data.key3);
                 
     });
-
-            /*$ionicLoading.show({
-                template: '<ion-spinner icon="ios-small"></ion-spinner>Loading...'
-            });
-
-            //var deferred = $q.defer();
-
-            //var params = {
-                //request : 'login',
-            //    userId : '051'
-            //};
-
-            //transFn = function(data) {
-            //    return $.param(data);
-            //},
-            //postCfg = {
-            //    headers: { 'Content-Type': 'application/json; charset=UTF-8'}//,
-                //transformRequest: transFn
-            //};
-
-            $http({
-              //url:'http://211.97.0.5:8080/YkAPI/service/login?userId=051',
-              url:AppConstant.BASE_URL,
-              method:'GET',
-              params: {
-                userId:'051'
-              }
-
-            })            
-            .success(function(data, status, headers, config){
-                    $ionicLoading.hide();
-                    //deferred.resolve(data);
-                    alert('data:'+data);
-                    alert('data:'+data.token);
-                }
-            )
-            .error(function(data, status, headers, config){
-                $ionicLoading.hide();
-
-                //data:这个数据代表转换过后的响应体（如果定义了转换的话）
-                //status:响应的HTTP状态码
-                //headers:这个函数是头信息的getter函数，可以接受一个参数，用来获取对应名字值
-                //config:这个对象是用来生成原始请求的完整设置对象
-                alert('data:'+data);
-                alert('status:'+status);
-                alert('headers:'+headers);
-                alert('config:'+config);
-                
-                var alertPopup = $ionicPopup.alert({
-                    template: '加载数据失败'
-                });
-                alertPopup.then(function(res) {
-                    //console.log('Thank you for not eating my delicious ice cream cone');
-                });
-                $timeout(function() {
-                    alertPopup.close(); //由于某种原因3秒后关闭弹出
-                }, 2000);
-                //deferred.reject(error);//$defer, promise must be rejected on error
-            });
-
-            //return deferred.promise;*/
-
   };
 
 });
