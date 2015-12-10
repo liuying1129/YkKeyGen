@@ -185,7 +185,7 @@ angular.module('starter.controllers', ['ngCordova'])
         passWord:$scope.login.passWord
     };
 
-    var promise = CommonService.asynchHttpMethod(AppConstant.BASE_URL+'login','POST',params);
+    var promise = CommonService.asynchHttpMethod(AppConstant.BASE_URL+'/login','POST',params);
 
     promise.then(function(data) {
 
@@ -203,10 +203,10 @@ angular.module('starter.controllers', ['ngCordova'])
         
       //处理正常业务数据
             
-            if ((!data.token)||("" === data.token)) {
-              alert("获取的token为空");
-              return;
-            }
+            //if ((!data.token)||("" === data.token)) {
+            //  alert("获取的token为空");
+            //  return;
+            //}
 
             $window.localStorage['token'] = data.token;
             $window.localStorage['userId'] = $scope.login.userId;
@@ -354,23 +354,24 @@ angular.module('starter.controllers', ['ngCordova'])
   $scope.rqtNormal = function(){
 
     var params = {
-      token:$window.localStorage['token']
+      token:$window.localStorage['token'],
+      methodNum:'AIF016'
     };
 
-    var promise = CommonService.asynchHttpMethod(AppConstant.BASE_URL+'normal','POST',params);
+    var promise = CommonService.asynchHttpMethod(AppConstant.BASE_URL,'POST',params);
 
     //var promise=Chats.getNormal();
     promise.then(function(data) {
 
       //post成功才会执行
 
-      if((typeof data.msg!='undefined')&&(typeof data.msg.valueOf()=='string')&&(data.msg.length>0))return;
+      if((typeof data.key1!='undefined')&&(typeof data.key1.valueOf()=='string')&&(data.key1.length>0)){
         
-      //处理正常业务数据
-      alert(data.key1);
-      alert(data.key2);
-      alert(data.key3);
-                
+        //处理正常业务数据
+        alert(data.key1);
+        alert(data.key2);
+        alert(data.key3);
+      }       
     });
   };
 
