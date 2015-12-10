@@ -170,7 +170,7 @@ angular.module('starter.controllers', ['ngCordova'])
 
   $scope.login = function () {
 
-    //$scope的变量名称必须全部小写
+    //$scope的变量名称如果超过1层，则第1层必须全部小写
     if (null == $scope.login.userId || "" == $scope.login.userId) {
         $ionicPopup.alert({
             title: '提示',
