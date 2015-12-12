@@ -183,14 +183,8 @@ angular.module('starter.controllers', ['ngCordova'])
     if((typeof data.exponent!='undefined')&&(typeof data.exponent.valueOf()=='string')&&(data.exponent.length>0)){
       
       //处理正常业务数据
-      alert("exponent:"+data.exponent);
-      alert("modulus:"+data.modulus);
-
       setMaxDigits(131);
       rsaPubKey = new RSAKeyPair(data.exponent, "", data.modulus);
-      alert("rsaPubKey:"+rsaPubKey);
-
-
     }       
   });    
 
@@ -209,10 +203,7 @@ angular.module('starter.controllers', ['ngCordova'])
     var passWord = $scope.login.passWord;
     if(!passWord || passWord == '') passWord = '';
         
-    alert("requestPwd1:"+passWord);
-
     var requestPwd = encryptedString(rsaPubKey,passWord);
-    alert("requestPwd2:"+requestPwd);
     params = {
         methodNum:"login",
         userId:$scope.login.userId,
@@ -237,11 +228,6 @@ angular.module('starter.controllers', ['ngCordova'])
         
       //处理正常业务数据
             
-            //if ((!data.token)||("" === data.token)) {
-            //  alert("获取的token为空");
-            //  return;
-            //}
-
             $window.localStorage['token'] = data.token;
             $window.localStorage['userId'] = $scope.login.userId;
 
