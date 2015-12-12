@@ -168,10 +168,36 @@ angular.module('starter.controllers', ['ngCordova'])
 
 .controller('LoginController', function($scope,$ionicLoading,$ionicPopup,$timeout,$state,$http,AppConstant,$window,CommonService) {
 
+  var rsaPubKey;
+
+  var params2 = {
+    methodNum:"rsa"
+  };
+
+  var promise2 = CommonService.asynchHttpMethod(AppConstant.BASE_URL,'POST',params2);
+
+  promise2.then(function(data) {
+
+    //post成功才会执行
+
+    if((typeof data.exponent!='undefined')&&(typeof data.exponent.valueOf()=='string')&&(data.exponent.length>0)){
+      
+      //处理正常业务数据
+      alert("exponent:"+data.exponent);
+      alert("modulus:"+data.modulus);
+
+      setMaxDigits(131);
+      rsaPubKey = new RSAKeyPair(data.exponent, "", data.modulus);
+      alert("rsaPubKey:"+rsaPubKey);
+
+
+    }       
+  });    
+
   $scope.login = function () {
 
     //$scope的变量名称如果超过1层，则第1层必须全部小写
-    if (null == $scope.login.userId || "" == $scope.login.userId) {
+    if (!$scope.login.userId || "" == $scope.login.userId) {
         $ionicPopup.alert({
             title: '提示',
             template: "账号不能为空。",
@@ -180,12 +206,20 @@ angular.module('starter.controllers', ['ngCordova'])
         return;
     }
 
+    var passWord = $scope.login.passWord;
+    if(!passWord || passWord == '') passWord = '';
+        
+    alert("requestPwd1:"+passWord);
+
+    var requestPwd = encryptedString(rsaPubKey,passWord);
+    alert("requestPwd2:"+requestPwd);
     params = {
+        methodNum:"login",
         userId:$scope.login.userId,
-        passWord:$scope.login.passWord
+        passWord:requestPwd
     };
 
-    var promise = CommonService.asynchHttpMethod(AppConstant.BASE_URL+'/login','POST',params);
+    var promise = CommonService.asynchHttpMethod(AppConstant.BASE_URL,'POST',params);
 
     promise.then(function(data) {
 
@@ -374,5 +408,7 @@ angular.module('starter.controllers', ['ngCordova'])
       }       
     });
   };
+
+
 
 });
