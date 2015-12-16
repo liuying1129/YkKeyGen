@@ -40,7 +40,7 @@ angular.module('starter.commonService', [])
               //最终，只用测量该字符串长度是否大于0了
               if((typeof data.msg!='undefined')&&(typeof data.msg.valueOf()=='string')&&(data.msg.length>0)) alert(data.msg);
                 
-              if ($state.current.name !== 'login'&&data.invalidToken) $state.go('login');
+              //if ($state.current.name !== 'login'&&data.invalidToken) $state.go('login');
               //每个应用这里的处理方式可能不同stop
 
           }
@@ -57,6 +57,9 @@ angular.module('starter.commonService', [])
           $timeout(function() {
               alertPopup.close(); //由于某种原因3秒后关闭弹出
           }, 2000);
+
+          if ($state.current.name !== 'login'&&status == 403) $state.go('login');
+
           deferred.reject(error);//$defer, promise must be rejected on error
       });
 
