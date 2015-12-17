@@ -168,6 +168,11 @@ angular.module('starter.controllers', ['ngCordova'])
 
 .controller('LoginController', function($scope,$ionicLoading,$ionicPopup,$timeout,$state,$http,AppConstant,$window,CommonService) {
 
+  $scope.login = {
+    userId  : "",
+    passWord : ""
+  };
+
   var rsaPubKey;
 
   var params2 = {
@@ -188,7 +193,7 @@ angular.module('starter.controllers', ['ngCordova'])
     }       
   });    
 
-  $scope.login = function () {
+  $scope.doLogin = function () {
 
     //$scope的变量名称如果超过1层，则第1层必须全部小写
     if (!$scope.login.userId || "" == $scope.login.userId) {
