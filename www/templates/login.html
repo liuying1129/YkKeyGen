@@ -8,11 +8,13 @@
             <label class="item item-input">
                 <i class="icon ion-ios-person-outline positive"></i>
                 <input type="text" placeholder="请输入您的用户名" ng-model="login.userId" >
+                <a ng-click="login.userId=''" class="button ion-close-circled button-clear" ></a>
                 <!-- -->
             </label>
             <label class="item item-input">
                 <i class="icon ion-ios-unlocked-outline positive"></i>
                 <input type="password" placeholder="请输入您的密码" ng-model="login.passWord" >
+                <a ng-click='login.passWord=""' class="button ion-close-circled button-clear" ></a>
                 <!-- -->
             </label>
             <!--<label class="item item-checkbox">
