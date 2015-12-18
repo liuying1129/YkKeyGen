@@ -242,6 +242,12 @@ angular.module('starter.controllers', ['ngCordova'])
 
   };
 
+  $scope.clearLoginBox = function () {
+    //alert("clearLoginBox");
+      $scope.login.userId = "";
+      //alert("clearLoginBox3");
+
+  };
 
 })
 
