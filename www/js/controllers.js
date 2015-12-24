@@ -242,13 +242,6 @@ angular.module('starter.controllers', ['ngCordova'])
 
   };
 
-  $scope.clearLoginBox = function () {
-    //alert("clearLoginBox");
-      $scope.login.userId = "";
-      //alert("clearLoginBox3");
-
-  };
-
 })
 
 .controller('AccountCtrl', function($scope,$http,$ionicLoading,$ionicPopup,$timeout, $q,AppConstant,$window,$ionicHistory,Chats,$state,CommonService) {
