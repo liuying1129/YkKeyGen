@@ -13,6 +13,7 @@ angular.module('starter', [
   , 'common.directive'
   , 'common.constants'
   , 'starter.commonService'
+  , 'hideTabs.directive'
   ])
 
 .run(function($ionicPlatform,$ionicPopup,$location,$ionicHistory,$rootScope, $state,$window) {
