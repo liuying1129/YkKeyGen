@@ -68,6 +68,13 @@
     //function onDeviceReady() {
     //  window.alert("deviceready事件");
     //}
+
+    window.onload = function() {  
+        if(!window.localStorage){
+            alert('This browser does NOT support localStorage');
+        }    
+    };
+
     </script>
   </head>
   <body ng-app="starter">
