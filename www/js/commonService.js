@@ -17,7 +17,8 @@ angular.module('starter.commonService', [])
       $http({
         url : url,
         method : method,
-        params : params
+        params : params,
+        timeout : 20000 //毫秒,默认60s,超时则返回到error
       })            
       .success(function(data, status, headers, config){
         
