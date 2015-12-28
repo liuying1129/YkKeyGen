@@ -70,6 +70,8 @@
     //}
 
     window.onload = function() {  
+    //HTML5本地存储只能存字符串，任何格式存储的时候都会被自动转为字符串
+    //在iPhone/iPad上有时设置setItem()时会出现诡异的QUOTA_EXCEEDED_ERR错误，这时一般在setItem之前，先removeItem()就ok了
         if(!window.localStorage){
             alert('This browser does NOT support localStorage');
         }    
