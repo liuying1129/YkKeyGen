@@ -166,7 +166,7 @@ angular.module('starter.controllers', ['ngCordova'])
   $scope.SendType = {choice:"授权"};  
 })
 
-.controller('LoginController', function($scope,$ionicLoading,$ionicPopup,$timeout,$state,$http,AppConstant,$window,CommonService) {
+.controller('LoginController', function($scope,$ionicLoading,$ionicPopup,$timeout,$state,$http,AppConstant,CommonService) {
 
   $scope.login = {
     userId  : "",
@@ -233,8 +233,8 @@ angular.module('starter.controllers', ['ngCordova'])
         
       //处理正常业务数据
             
-            $window.localStorage['token'] = data.token;
-            $window.localStorage['userId'] = $scope.login.userId;
+            window.localStorage.setItem('token', data.token);
+            window.localStorage.setItem('userId', $scope.login.userId);
 
             $state.go("tab.dash");
                 
@@ -244,7 +244,7 @@ angular.module('starter.controllers', ['ngCordova'])
 
 })
 
-.controller('AccountCtrl', function($scope,$http,$ionicLoading,$ionicPopup,$timeout, $q,AppConstant,$window,$ionicHistory,Chats,$state,CommonService) {
+.controller('AccountCtrl', function($scope,$http,$ionicLoading,$ionicPopup,$timeout, $q,AppConstant,$ionicHistory,Chats,$state,CommonService) {
 
   var getVersionNumber = function() {
 
@@ -361,7 +361,7 @@ angular.module('starter.controllers', ['ngCordova'])
           cancelText: '取消'
       }).then(function (res) {
         if (res) {
-          $window.localStorage.removeItem('userId');
+          window.localStorage.removeItem('userId');
           $ionicHistory.clearHistory();
           $ionicHistory.clearCache();
           if (ionic.Platform.isIOS()) {
@@ -378,7 +378,7 @@ angular.module('starter.controllers', ['ngCordova'])
   $scope.rqtNormal = function(){
 
     var params = {
-      token:$window.localStorage['token'],
+      token:window.localStorage.getItem('token'),
       methodNum:'AIF016'
     };
 

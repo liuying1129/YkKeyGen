@@ -16,7 +16,7 @@ angular.module('starter', [
   , 'hideTabs.directive'
   ])
 
-.run(function($ionicPlatform,$ionicPopup,$location,$ionicHistory,$rootScope, $state,$window) {
+.run(function($ionicPlatform,$ionicPopup,$location,$ionicHistory,$rootScope, $state) {
 
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard  ,$localstorage
@@ -75,7 +75,7 @@ angular.module('starter', [
 
       if(toState.name === 'login')return;// 如果是进入登录界面则允许//$stateChangeSuccess
       // 如果用户不存在
-      var userId = $window.localStorage['userId'];
+      var userId = window.localStorage.getItem('userId');//window可省略
       if(!userId || userId == ''){
           //event.preventDefault();// 取消默认跳转行为
           //$state.go("login",{});//跳转到登录界面
