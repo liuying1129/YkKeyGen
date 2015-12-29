@@ -14,6 +14,7 @@ angular.module('starter', [
   , 'common.constants'
   , 'starter.commonService'
   , 'hideTabs.directive'
+  , 'ion-datetime-picker'
   ])
 
 .run(function($ionicPlatform,$ionicPopup,$location,$ionicHistory,$rootScope, $state) {
