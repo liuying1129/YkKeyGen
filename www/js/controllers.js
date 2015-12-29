@@ -149,6 +149,12 @@ angular.module('starter.controllers', ['ngCordova'])
   };
 
   $scope.doSendSms = function(AAA,BBB){
+
+    if (!$scope.enCryptSmsBody || "" == $scope.enCryptSmsBody) {
+        alert("请先加密");
+        return;
+    }
+
     yklis.commfuction.doSendSms(
       AAA,BBB,
       function(successStr) {
