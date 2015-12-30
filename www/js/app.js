@@ -17,7 +17,7 @@ angular.module('starter', [
   , 'ion-datetime-picker'
   ])
 
-.run(function($ionicPlatform,$ionicPopup,$location,$ionicHistory,$rootScope, $state) {
+.run(function($ionicPlatform,$ionicPopup,$location,$ionicHistory,$rootScope, $state,$ionicPickerI18n) {
 
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard  ,$localstorage
@@ -89,6 +89,13 @@ angular.module('starter', [
       }
   });  
   //登录stop
+
+  //ion-datetime-picker汉化功能start
+  $ionicPickerI18n.weekdays = ["日","一", "二", "三", "四", "五", "六"];
+  $ionicPickerI18n.months = ["01月", "02月", "03月", "04月", "05月", "06月", "07月", "08月", "09月", "10月", "11月", "12月"];
+  //$ionicPickerI18n.ok = "确定";
+  //$ionicPickerI18n.cancel = "取消";  
+  //ion-datetime-picker汉化功能stop
 
 })
 
