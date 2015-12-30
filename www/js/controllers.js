@@ -252,6 +252,8 @@ angular.module('starter.controllers', ['ngCordova'])
 
 .controller('AccountCtrl', function($scope,$http,$ionicLoading,$ionicPopup,$timeout, $q,AppConstant,$ionicHistory,Chats,$state,CommonService) {
 
+  $scope.datetimeValue = new Date();
+  
   var getVersionNumber = function() {
 
     cordova.getAppVersion.getVersionNumber().then(function (version) {
