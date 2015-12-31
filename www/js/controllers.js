@@ -407,6 +407,32 @@ angular.module('starter.controllers', ['ngCordova'])
     });
   };
 
+  $scope.getPhoto = function() {
 
+        var options = {
+            //quality: 50,
+            destinationType: Camera.DestinationType.FILE_URI,//Camera.DestinationType.DATA_URL
+            sourceType: Camera.PictureSourceType.CAMERA//Camera.PictureSourceType.PHOTOLIBRARY 
+        };
+        navigator.camera.getPicture(function (imageUri) {
+          alert(imageUri);
+          $scope.lastPhoto = imageUri;
+        }, function (err) {
+            //Do nothing.
+            alert("err:"+err);
+        }, options);
+
+      //Chats.getPicture().then(function(imageURI) {
+      //    console.log(imageURI);
+      //    $scope.lastPhoto = imageURI;
+      //}, function(err) {
+      //    console.err(err);
+      //}, {
+      //    quality: 75,
+      //    targetWidth: 320,
+      //    targetHeight: 320,
+      //    saveToPhotoAlbum: false
+      //});
+  };
 
 });

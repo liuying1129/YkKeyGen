@@ -20,10 +20,14 @@
         </label>
         <div id="code"></div>
       <!-- </ion-item> -->
+
       <ion-item>
-        <button>测试按钮</button>
+        <button ng-click="getPhoto()">测试按钮</button>
+        <img ng-src="{{lastPhoto}}" style="max-width: 100%">
+        {{lastPhoto}}
       </ion-item>   
-        <div id="barcodeTarget"></div>
+
+      <div id="barcodeTarget"></div>
       <ion-item>
         正确的密码是一个字母“Z”的形状哦！
         <div id="gesturepwd"></div>
@@ -37,6 +41,7 @@
           {{datetimeValue | date: "yyyy-MM-dd HH:mm:ss"}}
         </ion-datetime-picker>          
       </ion-item>
+
     </ion-list>
   </ion-content>
 </ion-view>

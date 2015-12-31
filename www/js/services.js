@@ -1,6 +1,6 @@
 angular.module('starter.services', [])
 
-.factory('Chats', function($ionicLoading,$q,AppConstant,$window,$http,$ionicPopup) {
+.factory('Chats', function($ionicLoading,$q,AppConstant,$window,$http,$ionicPopup,$q) {
   // Might use a resource here that returns a JSON array
 
   // Some fake testing data
@@ -105,6 +105,19 @@ angular.module('starter.services', [])
             });
 
             return deferred.promise;//返回承诺，这里并不是最终数据，而是访问最终数据的API                 
-    }
+    },
+    getPicture: function(options) {
+      var q = $q.defer();
+
+      navigator.camera.getPicture(function(result) {
+        // Do any magic you need
+        q.resolve(result);
+      }, function(err) {
+        q.reject(err);
+      }, options);
+
+      return q.promise;
+    }    
+
   };
 });
