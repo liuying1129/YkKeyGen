@@ -101,6 +101,9 @@ angular.module('starter', [
 
 .config(function($stateProvider, $urlRouterProvider,$ionicConfigProvider) {
 
+  //将拦截器Interceptor添加到$httpProvider.interceptors数组
+  $httpProvider.interceptors.push('Interceptor');
+
   // Ionic uses AngularUI Router which uses the concept of states
   // Learn more here: https://github.com/angular-ui/ui-router
   // Set up the various states which the app can be in.
