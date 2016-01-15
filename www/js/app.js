@@ -7,7 +7,7 @@
 // 'starter.controllers' is found in controllers.js
 angular.module('starter', [
   'ionic'
-  ,'ngCordova'
+  , 'ngCordova'
   , 'starter.controllers'
   , 'starter.services'
   , 'common.directive'
@@ -15,6 +15,7 @@ angular.module('starter', [
   , 'starter.commonService'
   , 'hideTabs.directive'
   , 'ion-datetime-picker'
+  , 'starter.interceptor'
   ])
 
 .run(function($ionicPlatform,$ionicPopup,$location,$ionicHistory,$rootScope, $state,$ionicPickerI18n) {
@@ -99,7 +100,7 @@ angular.module('starter', [
 
 })
 
-.config(function($stateProvider, $urlRouterProvider,$ionicConfigProvider) {
+.config(function($stateProvider, $urlRouterProvider,$ionicConfigProvider,$httpProvider) {
 
   //将拦截器Interceptor添加到$httpProvider.interceptors数组
   $httpProvider.interceptors.push('Interceptor');
