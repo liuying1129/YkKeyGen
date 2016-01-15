@@ -34,7 +34,7 @@ angular.module('starter.interceptor', [])
 
             return config;
 
-        },
+        }/*,
         response : function(config) {
 
             return config;
@@ -49,7 +49,7 @@ angular.module('starter.interceptor', [])
 
             return response;
 
-        }
+        }*/
 
 	};
 
