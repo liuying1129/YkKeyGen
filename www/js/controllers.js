@@ -386,24 +386,21 @@ angular.module('starter.controllers', ['ngCordova'])
   $scope.rqtNormal = function(){
 
     var params = {
-      token:window.localStorage.getItem('token'),
-      methodNum:'AIF016'
+      methodNum:'AIF013',
+      sql:"SELECT TOP 1 UserId FROM ApiToken"
     };
 
     var promise = CommonService.asynchHttpMethod(AppConstant.BASE_URL,'POST',params);
 
-    //var promise=Chats.getNormal();
     promise.then(function(data) {
 
       //post成功才会执行
 
-      if((typeof data.key1!='undefined')&&(typeof data.key1.valueOf()=='string')&&(data.key1.length>0)){
-        
+      if((typeof data.response.result!='undefined')&&(typeof data.response.result.valueOf()=='string')&&(data.response.result.length>0)){
         //处理正常业务数据
-        alert(data.key1);
-        alert(data.key2);
-        alert(data.key3);
-      }       
+        alert(data.response.result);
+      }
+
     });
   };
 

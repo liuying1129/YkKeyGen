@@ -39,7 +39,8 @@ angular.module('starter.commonService', [])
               //因此，如果该变量是一个String对象，valueOf返回一个字符串直接量，如果该变量已经是一个字符串直接量，
               //对其应用valueOf方法会临时性地将它封装成一个String对象，这意味着，valueOf仍然将返回一个字符串直接量，
               //最终，只用测量该字符串长度是否大于0了
-              if((typeof data.msg!='undefined')&&(typeof data.msg.valueOf()=='string')&&(data.msg.length>0)) alert(data.msg);
+              //if((typeof data.msg!='undefined')&&(typeof data.msg.valueOf()=='string')&&(data.msg.length>0)) alert(data.msg);
+              if (!data.success) alert(data.response.errorCode +":"+ data.response.errorMsg);
                 
               //if ($state.current.name !== 'login'&&data.invalidToken) $state.go('login');
               //每个应用这里的处理方式可能不同stop
