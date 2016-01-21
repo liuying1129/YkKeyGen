@@ -191,12 +191,12 @@ angular.module('starter.controllers', ['ngCordova'])
 
     //post成功才会执行
 
-    if((typeof data.exponent!='undefined')&&(typeof data.exponent.valueOf()=='string')&&(data.exponent.length>0)){
-      
+    //if((typeof data.exponent!='undefined')&&(typeof data.exponent.valueOf()=='string')&&(data.exponent.length>0)){
+    if(!data.success)return;//{    
       //处理正常业务数据
       setMaxDigits(131);
-      rsaPubKey = new RSAKeyPair(data.exponent, "", data.modulus);
-    }       
+      rsaPubKey = new RSAKeyPair(data.response.exponent, "", data.response.modulus);
+    //}       
   });    
 
   $scope.doLogin = function () {
@@ -235,11 +235,11 @@ angular.module('starter.controllers', ['ngCordova'])
             //因此，如果该变量是一个String对象，valueOf返回一个字符串直接量，如果该变量已经是一个字符串直接量，
             //对其应用valueOf方法会临时性地将它封装成一个String对象，这意味着，valueOf仍然将返回一个字符串直接量，
             //最终，只用测量该字符串长度是否大于0了
-      if((typeof data.msg!='undefined')&&(typeof data.msg.valueOf()=='string')&&(data.msg.length>0))return;
-        
+      //if((typeof data.msg!='undefined')&&(typeof data.msg.valueOf()=='string')&&(data.msg.length>0))return;
+      if(!data.success)return;  
       //处理正常业务数据
             
-            window.localStorage.setItem('token', data.token);
+            window.localStorage.setItem('token', data.response.token);
             window.localStorage.setItem('userId', $scope.login.userId);
 
             $state.go("tab.dash");
@@ -386,8 +386,8 @@ angular.module('starter.controllers', ['ngCordova'])
   $scope.rqtNormal = function(){
 
     var params = {
-      methodNum:'AIF013',
-      sql:"SELECT TOP 1 UserId FROM ApiToken"
+      methodNum:'AIF014',
+      sql:"SELECT * FROM ApiToken"
     };
 
     var promise = CommonService.asynchHttpMethod(AppConstant.BASE_URL,'POST',params);
@@ -396,10 +396,12 @@ angular.module('starter.controllers', ['ngCordova'])
 
       //post成功才会执行
 
-      if((typeof data.response.result!='undefined')&&(typeof data.response.result.valueOf()=='string')&&(data.response.result.length>0)){
+      //if((typeof data.response.result!='undefined')&&(typeof data.response.result.valueOf()=='string')&&(data.response.result.length>0)){
         //处理正常业务数据
-        alert(data.response.result);
-      }
+      //  alert(data.response.result);
+      alert(data.success);
+      alert(data.response);
+      //}
 
     });
   };
