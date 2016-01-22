@@ -397,9 +397,10 @@ angular.module('starter.controllers', ['ngCordova'])
       //post成功才会执行
 
       //if((typeof data.response.result!='undefined')&&(typeof data.response.result.valueOf()=='string')&&(data.response.result.length>0)){
-        //处理正常业务数据
       //  alert(data.response.result);
-      alert(data.success);
+      if(!data.success)return;
+
+        //处理正常业务数据
       alert(JSON.stringify(data.response));
       //}
 
