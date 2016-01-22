@@ -400,7 +400,7 @@ angular.module('starter.controllers', ['ngCordova'])
         //处理正常业务数据
       //  alert(data.response.result);
       alert(data.success);
-      alert(data.response);
+      alert(JSON.stringify(data.response));
       //}
 
     });
