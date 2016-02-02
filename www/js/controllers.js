@@ -408,14 +408,15 @@ angular.module('starter.controllers', [])
 
   $scope.getPhoto = function() {
 
-        var options = {
+      var options = {
             //quality: 50,
             destinationType: Camera.DestinationType.FILE_URI,//Camera.DestinationType.DATA_URL
             sourceType: Camera.PictureSourceType.CAMERA//Camera.PictureSourceType.PHOTOLIBRARY 
         };
         navigator.camera.getPicture(function (imageUri) {
-          alert(imageUri);
-          $scope.lastPhoto = imageUri;
+            $scope.$apply(function() {
+                $scope.lastPhoto = imageUri;
+            });
         }, function (err) {
             //Do nothing.
             alert("err:"+err);
