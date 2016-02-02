@@ -7,7 +7,7 @@
 // 'starter.controllers' is found in controllers.js
 angular.module('starter', [
   'ionic'
-  , 'ngCordova'
+  //, 'ngCordova'
   , 'starter.controllers'
   , 'starter.services'
   , 'common.directive'
@@ -17,6 +17,26 @@ angular.module('starter', [
   , 'ion-datetime-picker'
   , 'starter.interceptor'
   ])
+
+/*
+angular.module为我们公开的API有：
+invokeQueue:按名约定的私有属性，请不要随意使用
+runBlocks:按名约定的私有属性，请不要随意使用
+requires
+name
+provider
+factory:服务
+service:服务
+value:变量,在不同的组件之间共享一个变量
+constant:常量
+animation
+filter:过滤器,
+controller:控制器,使用控制器：1、对scope对象进行初始化；2、向scope对象添加方法
+directive:指令
+config
+run
+推荐使用链式定义这些组件，而不是声明一个全局的module变量
+*/
 
 .run(function($ionicPlatform,$ionicPopup,$location,$ionicHistory,$rootScope, $state,$ionicPickerI18n) {
 
