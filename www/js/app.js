@@ -7,7 +7,7 @@
 // 'starter.controllers' is found in controllers.js
 angular.module('starter', [
   'ionic'
-  //, 'ngCordova'
+  , 'ngCordova'
   , 'starter.controllers'
   , 'starter.services'
   , 'common.directive'
@@ -17,6 +17,7 @@ angular.module('starter', [
   , 'ion-datetime-picker'
   , 'starter.interceptor'
   ])
+//引用的第三方插件进行了ngCordova封装，如$cordovaSQLite，故需引用ngCordova模块
 
 /*
 angular.module为我们公开的API有：

@@ -1,5 +1,4 @@
 angular.module('starter.controllers', [])
-//'ngCordova'
 .controller('DashCtrl', function($scope,$ionicLoading,$ionicPopup,$timeout,$state) {
 
   var getSmsList2 = function() {
