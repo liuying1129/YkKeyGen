@@ -409,9 +409,9 @@ angular.module('starter.controllers', [])
   $scope.getPhoto = function() {
 
       var options = {
-            //quality: 50,
-            destinationType: Camera.DestinationType.FILE_URI,//Camera.DestinationType.DATA_URL
-            sourceType: Camera.PictureSourceType.CAMERA//Camera.PictureSourceType.PHOTOLIBRARY 
+          //quality: 50,
+          //sourceType: Camera.PictureSourceType.CAMERA,//Camera.PictureSourceType.PHOTOLIBRARY
+          destinationType: Camera.DestinationType.FILE_URI//Camera.DestinationType.DATA_URL
         };
         navigator.camera.getPicture(function (imageUri) {
             $scope.$apply(function() {
