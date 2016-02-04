@@ -412,27 +412,33 @@ angular.module('starter.controllers', [])
           //quality: 50,
           //sourceType: Camera.PictureSourceType.CAMERA,//Camera.PictureSourceType.PHOTOLIBRARY
           destinationType: Camera.DestinationType.FILE_URI//Camera.DestinationType.DATA_URL
-        };
-        navigator.camera.getPicture(function (imageUri) {
-            $scope.$apply(function() {
-                $scope.lastPhoto = imageUri;
-            });
-        }, function (err) {
-            //Do nothing.
-            alert("err:"+err);
-        }, options);
+      };
 
-      //Chats.getPicture().then(function(imageURI) {
-      //    console.log(imageURI);
-      //    $scope.lastPhoto = imageURI;
-      //}, function(err) {
-      //    console.err(err);
-      //}, {
-      //    quality: 75,
-      //    targetWidth: 320,
-      //    targetHeight: 320,
-      //    saveToPhotoAlbum: false
-      //});
+      //promise是一个带有then()方法的对象
+      //then有3个可选参数(successFunc, errorFunc, notifyFunc)
+      //resolve时调用successFunc，reject时调用errorFunc，notify时调用notifyFunc
+      //.then(successFunc, errorFunc, notifyFunc)
+      //    .then(successFunc, errorFunc, notifyFunc)
+      //    .then(successFunc, errorFunc, notifyFunc)
+      //    .catch()
+      //    .finally();
+      var promise = CommonService.getPicture(options);
+
+      promise
+      .then(function(imageUri) {
+
+          $scope.lastPhoto = imageUri;
+
+      },function(err) {
+          $scope.errInfo = "err:"+ err;
+          //alert("err:"+err);//可能是alert引起的程序崩溃
+      })
+      .catch(function(e) {
+
+              $scope.errInfo = "catch:" + e;
+
+      });
+
   };
 
 });
