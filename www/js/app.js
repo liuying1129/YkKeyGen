@@ -12,6 +12,7 @@ angular.module('starter', [
   , 'starter.services'
   , 'common.directive'
   , 'common.constants'
+  , 'starter.commonValue'
   , 'starter.commonService'
   , 'hideTabs.directive'
   , 'ion-datetime-picker'
@@ -126,7 +127,8 @@ run
   //将拦截器Interceptor添加到$httpProvider.interceptors数组
   $httpProvider.interceptors.push('Interceptor');
 
-  // Ionic uses AngularUI Router which uses the concept of states
+  // 对于视图的路由，ionic没有使用AngularJS的路由模块（ng-route），而是使用 了angular-ui项目的ui-route模块。
+  // ionic.bundle.js已经打包了ui-route模块， 所以我们使用时不需要单独引入
   // Learn more here: https://github.com/angular-ui/ui-router
   // Set up the various states which the app can be in.
   // Each state's controller can be found in controllers.js

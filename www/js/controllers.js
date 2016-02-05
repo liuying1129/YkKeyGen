@@ -41,8 +41,8 @@ angular.module('starter.controllers', [])
 
   }
 
-  $scope.goSmsDetail = function(){
-    $state.go("tab.chat-detail", {smsAddress:"13763435454",smsBody:"http://www.baidu.com"}, {});
+  $scope.goSmsDetail = function(address,body){
+      $state.go("tab.chat-detail", {smsAddress:address,smsBody:body}, {});
   };
 
 })

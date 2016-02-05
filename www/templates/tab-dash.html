@@ -2,15 +2,15 @@
 
   <ion-content>
     <ion-list>
-      <!--  ng-click="goSmsDetail()" -->
-      <ion-item class="item-icon-right" collection-repeat="sms in smsList" href="#/tab/dash/{{sms.address}}/{{sms.body}}">
-        <font style='color:red;font-weight:bold;'>{{sms.address}}</font><br />
-        {{sms.body}}
-        <i class="icon ion-ios-arrow-right"></i>
+      <ion-item class="item-icon-right" collection-repeat="sms in smsList" ng-click="goSmsDetail(sms.address,sms.body)">
+          <!--href="#/tab/dash/{{sms.address}}/{{sms.body}}"-->
+          <!--如果参数sms.address或sms.body的内容中存在url,href方式会报错，故用ng-click方式代替-->
+          <font style='color:red;font-weight:bold;'>{{sms.address}}</font><br />
+          {{sms.body}}
+          <i class="icon ion-ios-arrow-right"></i>
       </ion-item>
 
     </ion-list>
-
 
   </ion-content>
 </ion-view>
