@@ -431,7 +431,6 @@ angular.module('starter.controllers', [])
 
       },function(err) {
           $scope.errInfo = "err:"+ err;
-          //alert("err:"+err);//可能是alert引起的程序崩溃
       })
       .catch(function(e) {
 
