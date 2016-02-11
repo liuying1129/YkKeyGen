@@ -8,3 +8,7 @@ https://github.com/katemihalikova/ion-datetime-picker
         <ion-datetime-picker ng-model="datetimeValue">
           {{datetimeValue | date: "yyyy-MM-dd HH:mm:ss"}}
         </ion-datetime-picker>
+
+
+注意：
+在Ionic v1.0.1下使用有问题：月份的排序乱了
