@@ -17,6 +17,7 @@ angular.module('starter', [
   , 'hideTabs.directive'
   , 'ion-datetime-picker'
   , 'starter.interceptor'
+  , 'live.directive.imgBoxScroll'
   ])
 //引用的第三方插件进行了ngCordova封装，如$cordovaSQLite，故需引用ngCordova模块
 
