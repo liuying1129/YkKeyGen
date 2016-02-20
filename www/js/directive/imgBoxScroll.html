@@ -6,14 +6,16 @@
 
   .img_box_header {
     background: rgba(0, 0, 0, 0.5);
-    transition: all 0.4s linear;
-    -webkit-transition: all 0.3s;
     transform: translate(0, -100%);
     -webkit-transform: translate(0, -100%);
     position: absolute;
     top: 0;
+    left:0;
     width: 100%;
-    z-index: 1000;
+    z-index: 999;
+    transition: all 0.4s linear;
+    -webkit-transition: all 0.3s;
+
   }
 
   .img_box_header.active {
@@ -66,16 +68,16 @@
 </style>
 <script id="imgBoxModal.html" type="text/ng-template">
   <ion-modal-view>
-    <ion-content class="img-box-content" scroll="false" ng-if="show" has-bouncing="true">
-      <div ng-class="{true:' img_box_header ',false:'img_box_header active'}[topHidden]" style="overflow: hidden">
-        <button class="button button-clear button-positive " on-Tap="backToCamera()">关闭</button>
-        <button class="button button-clear button-positive fr " ng-if="candelete" ng-click="deletePicture()">删除</button>
-      </div>
-      <ion-slide-box id="imgBox" on-slide-changed="slideHasChanged($index)" show-pager="true" on-Tap="topControl()"
-                     style="width: 100%;height: 100%;" active-slide="myActiveSlide">
+    <ion-header-bar  ng-class="{true:' img_box_header ',false:'img_box_header active'}[topHidden]" style="overflow: hidden">
+      <button class="button button-clear button-positive " on-Tap="backToCamera()">关闭</button>
+      <button class="button button-clear button-positive fr " ng-if="candelete" ng-click="deletePicture()">删除</button>
+    </ion-header-bar >
+    <ion-content class="img-box-content" scroll="false"  has-bouncing="true">
+      <ion-slide-box id="imgBox"   on-slide-changed="slideHasChanged($index)" show-pager="true" on-Tap="topControl()"
+                     style="width: 100%;height: 100%;"  >
         <ion-slide ng-repeat="imgSrc in imgarray    ">
           <ion-scroll zooming='true' min-zoom='1'   has-bouncing="true"   on-drag="goSlide($index)" delegate-handle="scroll_{{$index}}"   direction='xy'    class="img_Box_scroll_box">
-             <img src={{imgSrc.url}}  >
+             <img src={{imgSrc.url}} repeat-done="repeatDone()" >
           </ion-scroll>
         </ion-slide>
       </ion-slide-box>
