@@ -406,6 +406,10 @@ angular.module('starter.controllers', [])
     });
   };
 
+  $scope.showPicture = function(){
+      $scope.$broadcast('imgBoxModalShow');
+  };
+
   $scope.getPhoto = function() {
 
       var options = {

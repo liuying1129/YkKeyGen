@@ -44,7 +44,12 @@
       </ion-item>
 
       <ion-item>
-        <img-box-scroll show="true" imgarray="[{url:'img/icon.png'},{url:'img/icon2.png'},{url:'img/icon3.png'},{url:'img/icon4.png'}]" candelete="true"></img-box-scroll>
+        <img-box-scroll imgarray="[{url:'img/icon.png'},{url:'img/icon2.png'},{url:'img/icon3.png'},{url:'img/icon4.png'}]" candelete="true" imgindex="1">
+        </img-box-scroll>
+      </ion-item>
+
+      <ion-item>
+        <button ng-click="showPicture()">多图展示组件</button>
       </ion-item>
 
     </ion-list>
