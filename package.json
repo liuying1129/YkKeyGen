@@ -27,7 +27,5 @@
     "D:\\参考源码\\YkKeyGen\\PluginPack\\phonegap-plugin-barcodescanner",
     "C:\\Users\\liuying\\Desktop\\cordova-plugin-camera"
   ],
-  "cordovaPlatforms": [
-    "android"
-  ]
+  "cordovaPlatforms": []
 }
