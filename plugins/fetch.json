@@ -82,7 +82,7 @@
     "cordova-plugin-camera": {
         "source": {
             "type": "local",
-            "path": "C:\\Users\\liuying\\Desktop\\cordova-plugin-camera"
+            "path": "C:\\Users\\liuying\\Desktop\\cordova-plugin-camera-master\\cordova-plugin-camera-master"
         },
         "is_top_level": true,
         "variables": {}

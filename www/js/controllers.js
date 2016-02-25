@@ -281,14 +281,14 @@ angular.module('starter.controllers', [])
 
   $scope.datetimeValue = new Date();
   
-  /*var getVersionNumber = function() {
+  var getVersionNumber = function() {
 
     cordova.getAppVersion.getVersionNumber().then(function (version) {
       $scope.VersionNumber = version;
     });
   };
 
-  getVersionNumber();*/
+  getVersionNumber();
 
   //生成二维码start
   $scope.qrText = {srcQrText : ""};
