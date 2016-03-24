@@ -1,7 +1,7 @@
 angular.module('starter.commonValue', [])
 
-    //暂未用
+//angularjs 设置全局变量
 .value('CommonValue', {
-    "smsAddress":"smsAddress_initValue",
-    "smsBody":"smsBody_initValue"
+    globalVar1:"全局变量1初始值",
+    globalVar2:"全局变量2初始值"
 });

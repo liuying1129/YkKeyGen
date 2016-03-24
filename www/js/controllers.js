@@ -249,7 +249,11 @@ angular.module('starter.controllers', [])
 
 })
 
-.controller('AccountCtrl', function($scope,$http,$ionicLoading,$ionicPopup,$timeout, $q,AppConstant,$ionicHistory,Chats,$state,CommonService) {
+.controller('AccountCtrl', function($scope,$http,$ionicLoading,$ionicPopup,$timeout, $q,AppConstant,$ionicHistory,Chats,$state,CommonService,CommonValue) {
+
+    CommonValue.globalVar2 = "abc";
+    $scope.g1 = CommonValue.globalVar1;
+    $scope.g2 = CommonValue.globalVar2;
 
     //echarts应用start
     // 基于准备好的dom，初始化echarts实例
