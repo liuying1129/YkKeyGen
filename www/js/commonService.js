@@ -51,7 +51,7 @@ angular.module('starter.commonService', [])
               $ionicLoading.hide();
 
               var alertPopup = $ionicPopup.alert({
-                template: '请求失败,状态码:'+status
+                template: '请求'+config.params.methodNum+'失败,状态码:'+status
               });
               alertPopup.then(function(res) {
                   //console.log('Thank you for not eating my delicious ice cream cone');
