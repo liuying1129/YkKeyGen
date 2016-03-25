@@ -32,14 +32,26 @@ angular.module('starter.controllers', [])
   //Cordova提供的通过HTML5调用Native功能并不是立即就能使用的，Cordova框架在读入HTML5代码之后，
   //要进行HTML5和Native建立桥接，在未能完成这个桥接的初始的情况下，是不能调用Native功能的。
   //在Cordova框架中，当这个桥接的初始化完成后，会调用他自身特有的事件，即deviceready事件。 
-  document.addEventListener("deviceready", onDeviceReady, false);//注册监听器
-  function onDeviceReady() {
+    if(!window.device){
+        //浏览器调试使用
+        $(document).ready(onDeviceReady);
+    }else{
+        //设备使用
+        document.addEventListener("deviceready", onDeviceReady, false);//注册监听器
+    }
 
-    getSmsList2();
+    function onDeviceReady() {
 
-    $ionicLoading.hide();
+        try{
+            getSmsList2();
+        }catch (e){
+            alert(e);
+        }finally {
+            $ionicLoading.hide();
+        }
 
-  }
+
+    }
 
   $scope.goSmsDetail = function(address,body){
       $state.go("tab.chat-detail", {smsAddress:address,smsBody:body}, {});
