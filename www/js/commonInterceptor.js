@@ -5,7 +5,7 @@
 	//3、提高编译器效率，增加运行速度；
 	//4、为未来新版本的Javascript做好铺垫
 	"use strict";
-	
+
 angular.module('starter.interceptor', [])
 
 .factory('Interceptor', function() {
