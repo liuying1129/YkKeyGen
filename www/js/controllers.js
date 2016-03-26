@@ -427,7 +427,11 @@ angular.module('starter.controllers', [])
           if (ionic.Platform.isIOS()) {
               $state.go('login');
           } else {
-              ionic.Platform.exitApp();
+              //延时后再退出，等待window.localStorage.removeItem完成
+              //否则window.localStorage.removeItem可能不成功
+              setTimeout(function(){
+                  ionic.Platform.exitApp();
+              },700);
           }
         } else {
           // Don't close
