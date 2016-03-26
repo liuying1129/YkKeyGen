@@ -270,6 +270,8 @@ angular.module('starter.controllers', [])
 
 .controller('AccountCtrl', function($scope,$http,$ionicLoading,$ionicPopup,$timeout, $q,AppConstant,$ionicHistory,Chats,$state,CommonService,CommonValue) {
 
+    $scope.currentUserId = window.localStorage.getItem("userId");
+
     CommonValue.globalVar2 = "abc";
     $scope.g1 = CommonValue.globalVar1;
     $scope.g2 = CommonValue.globalVar2;
