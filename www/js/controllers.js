@@ -7,29 +7,31 @@
     "use strict";
 
 angular.module('starter.controllers', [])
-.controller('DashCtrl', function($scope,$ionicLoading,$ionicPopup,$timeout,$state) {
+.controller('DashCtrl', function($scope,$ionicLoading,$ionicPopup,$timeout,$state,$ionicPlatform) {
 
   var getSmsList2 = function() {
 
-    yklis.commfuction.getSmsList(
-      function(success) {        
-        $scope.$apply(function(){
-            //$scope.$apply更新该$scope.enCryptSmsBody到view
-            $scope.smsList = success;
-        });         
-      },
-      function(errorStr) {
-          var alertPopup = $ionicPopup.alert({
-              template: '读取短信失败:'+ errorStr
-          });
-          alertPopup.then(function(res) {
-              //console.log('Thank you for not eating my delicious ice cream cone');
-          });
-          $timeout(function() {
-              alertPopup.close(); //由于某种原因3秒后关闭弹出
-          }, 2000);
+      if (window.yklis && window.yklis.commfuction) {
+          yklis.commfuction.getSmsList(
+              function(success) {
+                  $scope.$apply(function(){
+                      //$scope.$apply更新该$scope.enCryptSmsBody到view
+                      $scope.smsList = success;
+                  });
+              },
+              function(errorStr) {
+                  var alertPopup = $ionicPopup.alert({
+                      template: '读取短信失败:'+ errorStr
+                  });
+                  alertPopup.then(function(res) {
+                      //console.log('Thank you for not eating my delicious ice cream cone');
+                  });
+                  $timeout(function() {
+                      alertPopup.close(); //由于某种原因3秒后关闭弹出
+                  }, 2000);
+              }
+          );
       }
-    );
   };
 
   $ionicLoading.show({
@@ -38,29 +40,27 @@ angular.module('starter.controllers', [])
 
   //Cordova提供的通过HTML5调用Native功能并不是立即就能使用的，Cordova框架在读入HTML5代码之后，
   //要进行HTML5和Native建立桥接，在未能完成这个桥接的初始的情况下，是不能调用Native功能的。
-  //在Cordova框架中，当这个桥接的初始化完成后，会调用他自身特有的事件，即deviceready事件。 
-    if(!window.device){
-        //浏览器调试使用
-        $(document).ready(onDeviceReady);
-    }else{
-        //设备使用
-        document.addEventListener("deviceready", onDeviceReady, false);//注册监听器
-    }
+  //在Cordova框架中，当这个桥接的初始化完成后，会调用他自身特有的事件，即deviceready事件。
+    $ionicPlatform.ready(function() {
 
-    function onDeviceReady() {
-
-        try{
-            getSmsList2();
-        }catch (e){
-            alert(e);
-        }finally {
-            $ionicLoading.hide();
+        //$ionicPlatform.ready后window.device才能取到值
+        if (window.device) {
+            //设备使用
+            document.addEventListener("deviceready", onDeviceReady, false);//注册监听器
+        } else {
+            //浏览器调试使用
+            $(document).ready(onDeviceReady);
         }
 
+    });
 
+    function onDeviceReady() {
+            getSmsList2();
     }
 
-  $scope.goSmsDetail = function(address,body){
+    $ionicLoading.hide();
+
+    $scope.goSmsDetail = function(address,body){
       $state.go("tab.chat-detail", {smsAddress:address,smsBody:body}, {});
   };
 
@@ -306,9 +306,11 @@ angular.module('starter.controllers', [])
   
   var getVersionNumber = function() {
 
-    cordova.getAppVersion.getVersionNumber().then(function (version) {
-      $scope.VersionNumber = version;
-    });
+      if (window.cordova && window.cordova.getAppVersion){
+          cordova.getAppVersion.getVersionNumber().then(function (version) {
+              $scope.VersionNumber = version;
+          });
+      }
   };
 
   getVersionNumber();
