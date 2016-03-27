@@ -7,7 +7,9 @@
   <ion-content>
     <ion-list>
       <ion-item>
-        <embed src="img/iconfont-touxiang.svg" width="30" height="30" ></embed>
+        <!--不知何故，手机上无法显示embed标签-->
+        <!--<embed src="img/iconfont-touxiang.svg" width="30" height="30" ></embed>-->
+        <img src="img/iconfont-touxiang.svg" width="30" height="30">
         {{currentUserId}}
       </ion-item>
       <ion-item>      	
@@ -30,6 +32,9 @@
         </label>
         <div id="code"></div>
       <!-- </ion-item> -->
+      <ion-item>
+        <div id="barcodeTarget"></div>
+      </ion-item>
 
       <ion-item>
         <button class='button button-clear icon-left ion-ios-camera button-calm' ng-click='getPhoto()'></button><br />
@@ -38,7 +43,6 @@
         {{lastPhoto}}
       </ion-item>   
 
-      <div id="barcodeTarget"></div>
       <ion-item>
         正确的密码是一个字母“Z”的形状哦！
         <div id="gesturepwd"></div>
