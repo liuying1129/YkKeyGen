@@ -268,7 +268,7 @@ angular.module('starter.controllers', [])
 
 })
 
-.controller('AccountCtrl', function($scope,$http,$ionicLoading,$ionicPopup,$timeout, $q,AppConstant,$ionicHistory,Chats,$state,CommonService,CommonValue) {
+.controller('AccountCtrl', function($scope,$http,$ionicLoading,$ionicPopup,$timeout, $q,AppConstant,$ionicHistory,Chats,$state,CommonService,CommonValue,$ionicActionSheet) {
 
     $scope.currentUserId = window.localStorage.getItem("userId");
 
@@ -502,6 +502,54 @@ angular.module('starter.controllers', [])
       });
 
   };
+
+    $scope.shareViaWechat = function(scene, title, desc, url, thumb){
+
+        // 创建消息体
+        var msg = {
+            title: title ? title : "行者无疆",
+            description: desc ? desc : "A real traveller's province is boundless.",
+            url: url ? url : "http://vicpan.com",
+            thumb: thumb ? thumb : null
+        };
+
+        WeChat.share(msg, scene, function() {
+            $ionicPopup.alert({
+                title: '分享成功',
+                template: '感谢您的支持！',
+                okText: '关闭'
+            });
+        }, function(res) {
+            $ionicPopup.alert({
+                title: '分享失败',
+                template: '错误原因：' + res + '。',
+                okText: '我知道了'
+            });
+        });
+    };
+
+    $scope.share = function(title, desc, url, thumb) {
+
+        $ionicActionSheet.show({
+                buttons: [
+                    { text: '<b>分享至微信朋友圈</b>' },
+                    { text: '分享给微信好友' }
+                ],
+                titleText: '分享',
+                cancelText: '取消',
+                cancel: function() {
+                    // 取消时执行
+                },
+                buttonClicked: function(index) {
+                    if(index == 0) {
+                        $scope.shareViaWechat(WeChat.Scene.timeline, title, desc, url, thumb);
+                    }
+                    if(index ==1 ) {
+                        $scope.shareViaWechat(WeChat.Scene.session, title, desc, url, thumb);
+                    }
+                }
+        });
+    };
 
 });
 
