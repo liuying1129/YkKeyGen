@@ -614,6 +614,10 @@
         },
         "cordova-plugin-camera": {
             "PACKAGE_NAME": "com.yklis.keygen"
+        },
+        "cordova-plugin-wechat": {
+            "WECHATAPPID": "wx86353c91ccbdb202",
+            "PACKAGE_NAME": "com.yklis.keygen"
         }
     },
     "dependent_plugins": {}

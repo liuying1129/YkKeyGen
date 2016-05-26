@@ -26,7 +26,14 @@
     "D:\\参考源码\\YkKeyGen\\PluginPack\\cordova-plugin-app-version",
     "D:\\参考源码\\YkKeyGen\\PluginPack\\phonegap-plugin-barcodescanner",
     "C:\\Users\\liuying\\Desktop\\cordova-plugin-camera",
-    "C:\\Users\\liuying\\Desktop\\cordova-plugin-camera-master\\cordova-plugin-camera-master"
+    "C:\\Users\\liuying\\Desktop\\cordova-plugin-camera-master\\cordova-plugin-camera-master",
+    {
+      "variables": {
+        "wechatappid": "wx86353c91ccbdb202"
+      },
+      "locator": "C:\\Users\\liuying\\Desktop\\cordova-plugin-wechat",
+      "id": "cordova-plugin-wechat"
+    }
   ],
   "cordovaPlatforms": [
     "android"

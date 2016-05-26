@@ -513,7 +513,11 @@ angular.module('starter.controllers', [])
             thumb: thumb ? thumb : null
         };
 
-        WeChat.share(msg, scene, function() {
+        alert("start share");
+
+        //微信插件地址：https://github.com/xu-li/cordova-plugin-wechat
+        //安装该插件需要参数：ionic plugin add cordova-plugin-wechat --variable wechatappid=微信AppID
+        Wechat.share(msg, scene, function() {
             $ionicPopup.alert({
                 title: '分享成功',
                 template: '感谢您的支持！',
@@ -526,6 +530,9 @@ angular.module('starter.controllers', [])
                 okText: '我知道了'
             });
         });
+
+        alert("stop share");
+
     };
 
     $scope.share = function(title, desc, url, thumb) {
@@ -541,11 +548,12 @@ angular.module('starter.controllers', [])
                     // 取消时执行
                 },
                 buttonClicked: function(index) {
+                    alert(index);
                     if(index == 0) {
-                        $scope.shareViaWechat(WeChat.Scene.timeline, title, desc, url, thumb);
+                        $scope.shareViaWechat(Wechat.Scene.timeline, title, desc, url, thumb);
                     }
                     if(index ==1 ) {
-                        $scope.shareViaWechat(WeChat.Scene.session, title, desc, url, thumb);
+                        $scope.shareViaWechat(Wechat.Scene.session, title, desc, url, thumb);
                     }
                 }
         });
