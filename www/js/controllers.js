@@ -503,7 +503,7 @@ angular.module('starter.controllers', [])
 
   };
 
-    $scope.shareViaWechat = function(scene, title, desc, url, thumb){
+    var shareViaWechat = function(scene, title, desc, url, thumb){
 
         // 创建消息体
         var msg = {
@@ -513,29 +513,21 @@ angular.module('starter.controllers', [])
             thumb: thumb ? thumb : null
         };
 
-        alert("start share");
-
         //微信插件地址：https://github.com/xu-li/cordova-plugin-wechat
         //安装该插件需要参数：ionic plugin add cordova-plugin-wechat --variable wechatappid=微信AppID
         Wechat.share(msg, scene, function() {
-            $ionicPopup.alert({
-                title: '分享成功',
-                template: '感谢您的支持！',
-                okText: '关闭'
-            });
-        }, function(res) {
-            $ionicPopup.alert({
-                title: '分享失败',
-                template: '错误原因：' + res + '。',
-                okText: '我知道了'
-            });
+            alert("分享成功");
+        }, function(reason) {
+            alert("分享失败,错误原因: " + reason);
         });
-
-        alert("stop share");
-
     };
 
     $scope.share = function(title, desc, url, thumb) {
+
+        if (typeof window.Wechat === "undefined") {
+            alert("Wechat plugin is not installed.");
+            return;
+        }
 
         $ionicActionSheet.show({
                 buttons: [
@@ -548,12 +540,11 @@ angular.module('starter.controllers', [])
                     // 取消时执行
                 },
                 buttonClicked: function(index) {
-                    alert(index);
                     if(index == 0) {
-                        $scope.shareViaWechat(Wechat.Scene.timeline, title, desc, url, thumb);
+                        shareViaWechat(Wechat.Scene.timeline, title, desc, url, thumb);
                     }
                     if(index ==1 ) {
-                        $scope.shareViaWechat(Wechat.Scene.session, title, desc, url, thumb);
+                        shareViaWechat(Wechat.Scene.session, title, desc, url, thumb);
                     }
                 }
         });
