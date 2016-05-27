@@ -505,17 +505,16 @@ angular.module('starter.controllers', [])
 
     var shareViaWechat = function(scene, title, desc, url, thumb){
 
-        // 创建消息体
-        var msg = {
-            title: title ? title : "行者无疆",
-            description: desc ? desc : "A real traveller's province is boundless.",
-            url: url ? url : "http://vicpan.com",
-            thumb: thumb ? thumb : null
+        var params = {
+            scene: scene,
+            text: "abcde"
         };
 
         //微信插件地址：https://github.com/xu-li/cordova-plugin-wechat
         //安装该插件需要参数：ionic plugin add cordova-plugin-wechat --variable wechatappid=微信AppID
-        Wechat.share(msg, scene, function() {
+        //apk包一定是经过签名文件签名的。默认签名(ionic build android)的apk包是不行的
+        //微信平台生成AppID，与应用签名没有必然联系的。即应用签名可以在微信开放平台修改，与apk的签名一致即可
+        Wechat.share(params, function() {
             alert("分享成功");
         }, function(reason) {
             alert("分享失败,错误原因: " + reason);
@@ -541,10 +540,10 @@ angular.module('starter.controllers', [])
                 },
                 buttonClicked: function(index) {
                     if(index == 0) {
-                        shareViaWechat(Wechat.Scene.timeline, title, desc, url, thumb);
+                        shareViaWechat(2, title, desc, url, thumb);//Wechat.Scene.timeline
                     }
                     if(index ==1 ) {
-                        shareViaWechat(Wechat.Scene.session, title, desc, url, thumb);
+                        shareViaWechat(0, title, desc, url, thumb);//Wechat.Scene.session
                     }
                 }
         });

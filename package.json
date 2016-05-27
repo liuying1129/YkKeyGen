@@ -31,7 +31,7 @@
       "variables": {
         "wechatappid": "wx86353c91ccbdb202"
       },
-      "locator": "C:\\Users\\liuying\\Desktop\\cordova-plugin-wechat",
+      "locator": "C:\\Users\\liuying\\Desktop\\cordova-plugin-wechat-log",
       "id": "cordova-plugin-wechat"
     }
   ],

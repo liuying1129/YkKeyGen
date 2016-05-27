@@ -90,7 +90,7 @@
     "cordova-plugin-wechat": {
         "source": {
             "type": "local",
-            "path": "C:\\Users\\liuying\\Desktop\\cordova-plugin-wechat"
+            "path": "C:\\Users\\liuying\\Desktop\\cordova-plugin-wechat-log"
         },
         "is_top_level": true,
         "variables": {
