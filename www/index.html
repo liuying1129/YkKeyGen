@@ -74,11 +74,11 @@
 
     //Cordova提供的通过HTML5调用Native功能并不是立即就能使用的，Cordova框架在读入HTML5代码之后，
     //要进行HTML5和Native建立桥接，在未能完成这个桥接的初始的情况下，是不能调用Native功能的。
-    //在Cordova框架中，当这个桥接的初始化完成后，会调用他自身特有的事件，即deviceready事件。 
-    //document.addEventListener("deviceready", onDeviceReady, false);//注册监听器
-    //function onDeviceReady() {
-    //  window.alert("deviceready事件");
-    //}
+    //在Cordova框架中，当这个桥接的初始化完成后，会调用他自身特有的事件，即deviceready事件。
+    document.addEventListener("deviceready", onDeviceReady, false);//注册监听器//设备初始化完成后隐藏Splash画面
+    function onDeviceReady() {
+      navigator.splashscreen.hide();
+    }
 
     window.onload = function() {  
     //HTML5本地存储只能存字符串，任何格式存储的时候都会被自动转为字符串
