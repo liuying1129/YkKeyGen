@@ -14,7 +14,11 @@
       </ion-item>
 
       <ion-item>
-        <button ng-click="share()">分享</button>
+        <button ng-click="share()">微信分享</button>
+        <div class="item item-divider">选择微信分享场景</div>
+        <ion-radio ng-repeat="scene in weShareScenes" ng-model="weShareScene.choice" ng-value="scene">
+          {{scene}}
+        </ion-radio>
       </ion-item>
 
       <ion-item>      	
