@@ -605,7 +605,7 @@ angular.module('starter.controllers', [])
                                 break;
 
                             case 4://发送Link消息给微信(远程缩略图)
-                                params.message.title = "发送Link消息给微信(本地缩略图)";
+                                params.message.title = "发送Link消息给微信(远程缩略图)";
                                 params.message.description = "微信的平台化发展方向是否真的会让这个原本简洁的产品变得臃肿？在国际化发展方向上，微信面临的问题真的是文化差异壁垒吗？腾讯高级副总裁、微信产品负责人张小龙给出了自己的回复。";
                                 params.message.thumb = "https://cordova.apache.org/images/cordova_256.png";
                                 params.message.media.type = Wechat.Type.WEBPAGE;
