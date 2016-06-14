@@ -12,7 +12,9 @@
       <!-- <div class="item">{{sms.Address}}</div> -->
       <label class="item item-input">
         <input type="text" ng-model="sms.Address">
-      </label>      
+      </label>
+      <a href="tel:{{sms.Address}}" class="button ion-ios-telephone button-positive">
+      </a>
       <label class="item item-input">
           <textarea maxlength="500" rows="5" autofocus="true" ng-model="sms.Body"></textarea>
       </label>
