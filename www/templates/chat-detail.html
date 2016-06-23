@@ -12,9 +12,11 @@
       <!-- <div class="item">{{sms.Address}}</div> -->
       <label class="item item-input">
         <input type="text" ng-model="sms.Address">
+        <a href="tel:{{sms.Address}}" class="button button-clear">
+          <!-- 下级样式只能应用在.button的子元素上，声明子元素的大小等特征 -->
+          <i class="icon ion-ios-telephone positive"></i>
+        </a>
       </label>
-      <a href="tel:{{sms.Address}}" class="button ion-ios-telephone button-positive">
-      </a>
       <label class="item item-input">
           <textarea maxlength="500" rows="5" autofocus="true" ng-model="sms.Body"></textarea>
       </label>
