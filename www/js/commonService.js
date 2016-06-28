@@ -19,6 +19,10 @@
           $ionicLoading.show({
               template: '<ion-spinner icon="ios-small"></ion-spinner>Loading...'
           });
+          
+          //所有请求统一增加token参数，后台决定是否需要使用
+          //在拦截器中增加header键值对，提示Request header field X-Access-Token is not allowed by Access-Control-Allow-Headers
+          params.token = window.localStorage.getItem('token');
 
           var deferred = $q.defer();//声明延后执行，表示要去监控后面的执行
 
