@@ -21,14 +21,18 @@
           });
           
           //所有请求统一增加token参数，后台决定是否需要使用
-          //在拦截器中增加header键值对，提示Request header field X-Access-Token is not allowed by Access-Control-Allow-Headers
-          params.token = window.localStorage.getItem('token');
+          //用拦截器中实现了该功能
+          //params.token = window.localStorage.getItem('token');
 
           var deferred = $q.defer();//声明延后执行，表示要去监控后面的执行
 
           $http({
             url : url,
             method : method,
+            //用拦截器中实现了该功能
+            //headers: {
+			//	'X-Access-Token': window.localStorage.getItem('token')
+  			//},
             params : params,
             timeout : 20000 //毫秒,默认60s,超时则返回到error
           })

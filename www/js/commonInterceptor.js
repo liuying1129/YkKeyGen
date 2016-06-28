@@ -38,8 +38,8 @@ angular.module('starter.interceptor', [])
 
         request : function(config) {
 
-          	//在拦截器中增加header键值对，提示Request header field X-Access-Token is not allowed by Access-Control-Allow-Headers
-        	//config.headers['X-Access-Token'] = window.localStorage.getItem('token');
+          	//所有请求统一增加token参数，后台决定是否需要使用
+        	config.headers['X-Access-Token'] = window.localStorage.getItem('token');
 
             return config;
 
