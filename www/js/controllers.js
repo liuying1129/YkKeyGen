@@ -74,6 +74,9 @@ angular.module('starter.controllers', [])
   //
   //$scope.$on('$ionicView.enter', function(e) {
   //});
+  
+  //浏览器则返回
+  if(!window.cordova) return;
 
   var db = $cordovaSQLite.openDB("userdb.db"); 
   $cordovaSQLite.execute(db, "CREATE TABLE IF NOT EXISTS RegInfo (id integer primary key autoincrement, TelNo varchar(50),OrgRegNo varchar(50),RegNo varchar(200),Create_Date_Time TimeStamp DEFAULT (datetime('now','localtime')))");
