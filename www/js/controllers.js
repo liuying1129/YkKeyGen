@@ -241,6 +241,9 @@ angular.module('starter.controllers', [])
         userId:$scope.login.userId,
         passWord:requestPwd
     };
+    
+    params.sign = make_sign(params,null);
+    //alert(params.sign);
 
     var promise = CommonService.asynchHttpMethod(AppConstant.BASE_URL,'POST',params);
 
@@ -450,6 +453,8 @@ angular.module('starter.controllers', [])
       methodNum:'AIF014',
       sql:"SELECT * FROM ApiToken"
     };
+    
+    params.sign = make_sign(params,window.localStorage.getItem('token'));
 
     var promise = CommonService.asynchHttpMethod(AppConstant.BASE_URL,'POST',params);
 

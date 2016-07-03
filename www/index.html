@@ -38,6 +38,31 @@
     <script src="lib/BigInt.js"></script>
     <script src="lib/RSA.js"></script>
     
+    <!-- MD5 -->
+    <script src="lib/md5-min.js"></script>
+    
+    <script>
+    	function make_sign(params,token){
+    		//生成签名sign
+		    var sort_params="";   
+		    var sort_keys=Object.keys(params).sort();   
+		    for(var sk in sort_keys){                     
+		    	if(!params[sort_keys[sk]])continue;
+		    	if(typeof params[sort_keys[sk]].valueOf()=='string' && params[sort_keys[sk]].length<=0)continue;
+		    	sort_params = sort_params + sort_keys[sk] + params[sort_keys[sk]];
+		 		}  
+		 		var sign;
+		 		if(token && typeof token=='string' && token.length>0){
+		 			sign = hex_md5(token+sort_params);
+		 		}else{
+		 			sign = hex_md5(sort_params);
+		 		}
+		    sort_params = null;
+		    
+		    return sign;
+    	}    	
+    </script>
+    
     <!-- cordova script (this will be a 404 during development) -->
     <script src="cordova.js"></script>
 
