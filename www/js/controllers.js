@@ -239,7 +239,8 @@ angular.module('starter.controllers', [])
     var params = {
         methodNum:"login",
         userId:$scope.login.userId,
-        passWord:requestPwd
+        passWord:requestPwd//,
+        //aa:"中国"
     };
     
     params.sign = make_sign(params,null);
