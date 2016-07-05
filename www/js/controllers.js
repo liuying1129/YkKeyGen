@@ -239,12 +239,11 @@ angular.module('starter.controllers', [])
     var params = {
         methodNum:"login",
         userId:$scope.login.userId,
-        passWord:requestPwd//,
-        //aa:"中国"
+        passWord:requestPwd,
+        aa:"中国"
     };
-    
+        
     params.sign = make_sign(params,null);
-    //alert(params.sign);
 
     var promise = CommonService.asynchHttpMethod(AppConstant.BASE_URL,'POST',params);
 
@@ -452,10 +451,42 @@ angular.module('starter.controllers', [])
 
     var params = {
       methodNum:'AIF014',
-      sql:"SELECT * FROM ApiToken"
+      sql:"SELECT * FROM ryjs where jsmc='管理员'"
     };
     
     params.sign = make_sign(params,window.localStorage.getItem('token'));
+
+    var promise = CommonService.asynchHttpMethod(AppConstant.BASE_URL,'POST',params);
+
+    promise.then(function(data) {
+
+      //post成功才会执行
+
+      //if((typeof data.response.result!='undefined')&&(typeof data.response.result.valueOf()=='string')&&(data.response.result.length>0)){
+      //  alert(data.response.result);
+      if(!data.success)return;
+
+        //处理正常业务数据
+      alert(JSON.stringify(data.response));
+      //}
+
+    });
+  };
+
+  $scope.rqtNormal2 = function(){
+
+    var params = {
+      methodNum:'AIF015',
+      customer:"虚拟医院",
+      actionTime:"2015-10-10 10:10:10",
+      sysName:"app",
+      pageName:"测试页面",
+      ip:"10.1.2.3",
+      userName:"刘瑛",
+      actionName:"Show"
+    };
+    
+    params.sign = make_sign(params,null);
 
     var promise = CommonService.asynchHttpMethod(AppConstant.BASE_URL,'POST',params);
 

@@ -50,7 +50,18 @@
 		    	if(!params[sort_keys[sk]])continue;
 		    	if(typeof params[sort_keys[sk]].valueOf()=='string' && params[sort_keys[sk]].length<=0)continue;
 		    	sort_params = sort_params + sort_keys[sk] + params[sort_keys[sk]];
-		 		}  
+		 		}		
+		 		//计算md5之前确保接口与接入方的字符串编码一致
+		 		//utf-8编码
+		 		sort_params = encodeURI(sort_params);
+		 		sort_params = sort_params.replace(/%20/g,'+');
+		 		sort_params = sort_params.replace(/!/g,'%21');
+		 		sort_params = sort_params.replace(/'/g,'%27');
+		 		sort_params = sort_params.replace(/\(/g,'%28');
+		 		sort_params = sort_params.replace(/\)/g,'%29');
+		 		sort_params = sort_params.replace(/:/g,'%3A');
+		 		sort_params = sort_params.replace(/=/g,'%3D');
+		 		sort_params = sort_params.replace(/~/g,'%7E');
 		 		var sign;
 		 		if(token && typeof token=='string' && token.length>0){
 		 			sign = hex_md5(token+sort_params);
