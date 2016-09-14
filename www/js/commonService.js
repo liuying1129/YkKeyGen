@@ -14,6 +14,15 @@
 
   	  asynchHttpMethod: function(url,method,params) {
 
+		  var ifRest = arguments[3] ? arguments[3] : false;//第4个参数的默认值
+		  
+  		  var urlTmp;
+		  if(ifRest){
+		  	urlTmp = url + '/' + params.methodNum;
+		  }else{
+		  	urlTmp = url + '/service';
+		  }
+
           //method:GET、POST...
 
           $ionicLoading.show({
@@ -27,7 +36,7 @@
           var deferred = $q.defer();//声明延后执行，表示要去监控后面的执行
 
           $http({
-            url : url,
+            url : urlTmp,
             method : method,
             //用拦截器中实现了该功能
             //headers: {

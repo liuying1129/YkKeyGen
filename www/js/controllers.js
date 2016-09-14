@@ -206,7 +206,7 @@ angular.module('starter.controllers', [])
     methodNum:"rsa"
   };
 
-  var promise2 = CommonService.asynchHttpMethod(AppConstant.BASE_URL,'POST',params2);
+  var promise2 = CommonService.asynchHttpMethod(AppConstant.BASE_URL,'POST',params2,true);
 
   promise2.then(function(data) {
 
