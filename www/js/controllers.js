@@ -505,6 +505,33 @@ angular.module('starter.controllers', [])
     });
   };
 
+  $scope.rqtNormal3 = function(){
+
+    var params = {
+      methodNum:'AIF016',
+      source:"虚拟医院",
+      key:"lc"
+    };
+    
+    params.sign = make_sign(params,window.localStorage.getItem('token'));
+
+    var promise = CommonService.asynchHttpMethod(AppConstant.BASE_URL,'POST',params);
+
+    promise.then(function(data) {
+
+      //post成功才会执行
+
+      //if((typeof data.response.result!='undefined')&&(typeof data.response.result.valueOf()=='string')&&(data.response.result.length>0)){
+      //  alert(data.response.result);
+      if(!data.success)return;
+
+        //处理正常业务数据
+      alert(JSON.stringify(data.response));
+      //}
+
+    });
+  };
+
   $scope.showPicture = function(){
       $scope.$broadcast('imgBoxModalShow');
   };
