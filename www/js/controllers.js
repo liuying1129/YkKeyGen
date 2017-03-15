@@ -734,7 +734,7 @@ angular.module('starter.controllers', [])
                     //微信插件地址：https://github.com/xu-li/cordova-plugin-wechat
                     //安装该插件需要参数：ionic plugin add cordova-plugin-wechat --variable wechatappid=微信AppID
                     //apk包一定是经过签名文件签名的。默认签名(ionic build android)的apk包是不行的
-                    //微信平台生成AppID，与应用签名没有必然联系的。即应用签名可以在微信开放平台修改，与apk的签名一致即可
+                    //微信开放平台生成AppID，与应用签名没有必然联系的。即应用签名可以在微信开放平台修改，与apk的签名一致即可
                     Wechat.share(params, function() {
                         alert("分享成功");
                     }, function(reason) {
