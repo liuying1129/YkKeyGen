@@ -17,6 +17,10 @@
   <preference name="BackupWebStorage" value="none"/>
   <preference name="SplashScreen" value="screen"/>
   <preference name="SplashScreenDelay" value="8000"/><!-- Splash显示时间，默认是3000ms-->
+
+  <!-- iOS版本如安装splashscreen插件，运行时可能会在Splash页面一直loading.该设置解决该问题 -->
+  <preference name="ShowSplashScreenSpinner" value="false"/>
+
   <feature name="StatusBar">
     <param name="ios-package" value="CDVStatusBar" onload="true"/>
   </feature>
